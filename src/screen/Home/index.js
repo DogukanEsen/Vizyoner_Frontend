@@ -1,9 +1,11 @@
-import React from "react";
+import Header from "../../components/HeaderMain";
 
 
 function index() {
   return (
-      <></>
+      <>
+        <Header/>
+      </>
     
   );
 }
