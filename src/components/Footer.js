@@ -7,6 +7,8 @@ import { AiFillInstagram } from 'react-icons/ai';
 import { AiFillQuestionCircle } from 'react-icons/ai';
 
 
+console.log();
+
 function Footer() {
   return (
 
