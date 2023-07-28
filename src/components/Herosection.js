@@ -82,7 +82,7 @@ export default function Herosection() {
 
       <div className="bg-zinc-100 flex flex-col justify-center sm-block">
         <form className="max-w-[400px] w-full mx-auto bg-zinc-100 p-8 px-8 roundend-lg" onSubmit={handleSubmit}>
-          <h2 className="text-2xl dark:text-white font-bold text-center text-green-700">Vizyoner Genç'e Giriş Yap!</h2>
+          <h2 className="text-2xl font-bold text-center text-green-700">Vizyoner Genç'e Giriş Yap!</h2>
           <div className="flex flex-col text-gray-400 py-5">
             <label className="font-bold">E-posta Adresi</label>
             <input className="rounded-lg text-gray-400 mt-2 p-2" type="email" placeholder='E-postanızı giriniz' value={values.email} name='email' onChange={handleChange} />
