@@ -2,8 +2,7 @@ import Login from '../screen/Login'
 import Register from '../screen/Register'
 import Home from '../screen/Home'
 import Instational from '../screen/Instational'
-
-
+import Profile from '../screen/Profile'
 import {
   BrowserRouter,
   Link,
@@ -20,6 +19,7 @@ export default function App() {
         <Route path="/register/" element={<Register />} />
         <Route path="/anasayfa/" element={<Home />} />
         <Route path="/kurumsal" element={<Instational/>}/>
+        <Route path="/profil" element={<Profile/>}/>
         
         
       </Routes>
