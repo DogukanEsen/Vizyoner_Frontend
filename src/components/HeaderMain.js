@@ -16,6 +16,25 @@ export default function header() {
 
       <div className="flex justify-between items-center h-18 max-w-[1240px] mx-auto px-4  ">
         <a href="#"><img src="https://vizyonergenc.com/v2/images/logo2.png" width={100} /> </a>
+          <ul className="flex -ml-10">
+            {[
+             { icon: AiOutlineHome, label: "Anasayfa"},
+              { icon: PiBagSimple, label: "İlanlar" },
+              { icon: AiOutlineUnorderedList, label: "Firmalar" },
+              { icon: PiNewspaperBold, label: "Başvurularım" },
+              { icon: PiProjectorScreenChartBold, label: "Projelerim" },
+              { icon: BiBadgeCheck, label: "İlan Eşleşmelerim" }
+            ].map((item, index) => (
+              <li key={index} className="p-2">
+                <div className="flex flex-col items-center">
+                  <a href="#">
+                    {React.createElement(item.icon, { color: "white" })}
+                  </a>
+                  <a className="text-white mt-1 text-xs" href="#">{item.label}</a>
+                </div>
+              </li>
+            ))}
+            </ul>
 
         <ul className="flex -ml-10">
 

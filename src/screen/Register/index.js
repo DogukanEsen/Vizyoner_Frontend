@@ -95,23 +95,23 @@ function Index() {
               <div className="flex flex-col w-full sm:pr-2">
                 <label className="font-bold">Ad - Soyad</label>
                 <input className="rounded-lg text-gray-400 mt-2 p-2 " type="text"  value={values.name} name="name" onChange={handleChange}/>
-                {errors.name && <p style={{ color: "green", fontSize: "18px" }}>{errors.name}</p>}
+                {errors.name && <p style={{ color: "red", fontSize: "18px" }}>{errors.name}</p>}
               </div>
             </div>
             <div className="flex flex-col text-gray-400 py-3  ">
               <label className="font-bold ">E-posta Adresi</label>
               <input className="rounded-lg text-gray-400 mt-2 p-2" type="email" value={values.email} name="email" onChange={handleChange}/>
-              {errors.email && <p style={{ color: "green", fontSize: "18px" }}>{errors.email}</p>}
+              {errors.email && <p style={{ color: "red", fontSize: "18px" }}>{errors.email}</p>}
             </div>
             <div className="flex flex-col text-gray-400 py-3">
               <label className="font-bold">Şifre</label>
               <input className="rounded-lg text-gray-400 mt-2 p-2" type="password" value={values.password} name="password"  onChange={handleChange}/>
-              {errors.password && <p style={{ color: "green", fontSize: "18px" }}>{errors.password}</p>}
+              {errors.password && <p style={{ color: "red", fontSize: "18px" }}>{errors.password}</p>}
             </div>
             <div className="flex flex-col text-gray-400 py-3">
               <label className="font-bold">Şifre Tekrar</label>
               <input className="rounded-lg text-gray-400 mt-2 p-2" type="password" value={values.confirmPassword} name="confirmPassword" onChange={handleChange}/>
-              {errors.confirmPassword && <p style={{ color: "green", fontSize: "18px" }}>{errors.confirmPassword}</p>}
+              {errors.confirmPassword && <p style={{ color: "red", fontSize: "18px" }}>{errors.confirmPassword}</p>}
             </div>
             <div className='flex justify-center text-gray-400 py-2'>
               <button className="w-full my-5 py-2 bg-green-500 shadow-lg hover:shadow-teal-600/60 font-semibold rounded-lg text-black" type="submit">Kayıt olun</button>

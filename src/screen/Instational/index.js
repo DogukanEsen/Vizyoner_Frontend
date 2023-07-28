@@ -33,12 +33,12 @@ export default function Index() {
           <div className="flex flex-col text-gray-400 py-3">
             <label className="font-bold">E-posta Adresi</label>
             <input className="rounded-lg text-gray-400 mt-2 p-2" type="email" placeholder='E-postanızı giriniz' value={values.email} name='email' onChange={handleChange} />
-            {errors.email && <p style={{ color: "green", fontSize: "17px" }}>{errors.email}</p>}
+            {errors.email && <p style={{ color: "red", fontSize: "17px" }}>{errors.email}</p>}
           </div>
           <div className="flex flex-col text-gray-400 py-3">
             <label className="font-bold">Şifre</label>
             <input className="rounded-lg text-gray-400 mt-2 p-2" type="password" placeholder='Şifrenizi giriniz' value={values.password} name='password' onChange={handleChange} />
-            {errors.password && <p style={{ color: "green", fontSize: "17px" }}>{errors.password}</p>}
+            {errors.password && <p style={{ color: "red", fontSize: "17px" }}>{errors.password}</p>}
           </div>
           <div className='flex justify-between text-gray-400 py-2'>
             <p className='flex-items-center'>

@@ -20,7 +20,7 @@ export default function App() {
         <Route path="/register/" element={<Register />} />
         <Route path="/anasayfa/" element={<Home />} />
         <Route path="/kurumsal" element={<Instational/>}/>
-        
+        <Route path="/profil/" element={<Profile/>}/>
         
       </Routes>
     </BrowserRouter>
