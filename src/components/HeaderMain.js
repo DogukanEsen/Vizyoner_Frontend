@@ -1,24 +1,52 @@
-import { AiOutlineHome } from 'react-icons/ai';
-import { AiOutlineUnorderedList } from 'react-icons/ai';
-import { PiBagSimple } from 'react-icons/pi';
-import { PiNewspaperBold } from 'react-icons/pi';
-import { AiOutlineQuestionCircle } from 'react-icons/ai';
-import { BiBadgeCheck } from 'react-icons/bi';
-import { BiMessage } from 'react-icons/bi';
-import { BiBell } from 'react-icons/bi';
-import { AiOutlineUser } from 'react-icons/ai';
-import { PiProjectorScreenChartBold } from 'react-icons/pi';
+import React, { useState, useEffect, useRef } from "react";
+import { AiOutlineHome, AiOutlineUnorderedList, AiOutlineQuestionCircle, AiOutlineUser, AiOutlineSetting,AiOutlinePoweroff } from 'react-icons/ai';
+import { PiBagSimple, PiNewspaperBold, PiProjectorScreenChartBold } from 'react-icons/pi';
+import { BiBadgeCheck, BiMessage, BiBell } from 'react-icons/bi';
+import { MdFace } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
+const Header = () => {
+  const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
 
-export default function header() {
+  const dropdownRef = useRef(null); // Reference to the dropdown element
+
+  const headerStyle = {
+    zIndex: 9,
+    position: "relative",
+    marginBottom: "300px"
+  };
+
+  const handleUserIconClick = () => {
+    setUserDropdownOpen(!isUserDropdownOpen);
+  };
+
+  const handleClickOutside = (event) => {
+    // Close the dropdown if clicked outside of it
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setUserDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    // Add event listener when the component mounts
+    document.addEventListener("click", handleClickOutside);
+    // Remove event listener when the component unmounts
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="bg-[#0073b5] p-1 " >
+    <div>
+      <div className="bg-[#0073b5] p-1" style={headerStyle}>
+        <div className="flex justify-between items-center h-18 max-w-[1240px] mx-auto px-4">
+          <Link to="/anasayfa" href="#">
+            <img src="https://vizyonergenc.com/v2/images/logo2.png" width={100} alt="Logo" />
+            </Link>
 
-      <div className="flex justify-between items-center h-18 max-w-[1240px] mx-auto px-4  ">
-        <a href="#"><img src="https://vizyonergenc.com/v2/images/logo2.png" width={100} /> </a>
           <ul className="flex -ml-10">
             {[
-             { icon: AiOutlineHome, label: "Anasayfa"},
+              { icon: AiOutlineHome, label: "Anasayfa"},
               { icon: PiBagSimple, label: "İlanlar" },
               { icon: AiOutlineUnorderedList, label: "Firmalar" },
               { icon: PiNewspaperBold, label: "Başvurularım" },
@@ -34,118 +62,104 @@ export default function header() {
                 </div>
               </li>
             ))}
-            </ul>
 
-        <ul className="flex -ml-10">
+            {/* Additional Images */}
+            <li className="p-2">
+              <a href="#"><img className="h-10" src="https://vizyonergenc.com/images/kok_logo_beyaz.png" width={40} alt="Image1" /></a>
+            </li>
+            <li className="p-2">
+              <a href="#"><img className="h-10" src="https://vizyonergenc.com/images/kalfa_logo_beyaz.png" width={40} alt="Image2" /></a>
+            </li>
 
-          <li className="p-2">
-            <div className="flex flex-col items-center">
-              <a href="#">
-                <AiOutlineHome color="white" />
-              </a>
-              <a className="text-white mt-1 text-xs" href="#">Anasayfa</a>
-            </div>
-          </li>
+            <li className="p-2">
+              <input
+                type="search"
+                placeholder=" Ara"
+                style={{
+                  width: '80%',
+                  height: '36px',
+                  borderRadius: '5px',
+                  border: 'none',
+                  padding: '5px',
+                  fontFamily: 'Arial, sans-serif',
+                  fontSize: '16px',
+                  color: '#333',
+                  backgroundColor: '#f2f2f2',
+                  marginTop: '2px',
+                  marginLeft: '20px',
+                  borderRadius: '35px',
+                }}
+              />
+            </li>
+          </ul>
 
-          <li className="p-2">
-            <div className="flex flex-col items-center">
-              <a href="#">
-                <PiBagSimple color="white" />
-              </a>
-              <a className="text-white mt-1 text-xs" href="#">İlanlar</a>
-            </div>
-          </li>
-
-          <li className="p-2">
-            <div className="flex flex-col items-center">
-              <a href="#">
-                <AiOutlineUnorderedList color="white" />
-              </a>
-              <a className="text-white mt-1 text-xs" href="#">Firmalar</a>
-            </div>
-          </li>
-
-          <li className="p-2">
-            <div className="flex flex-col items-center">
-              <a href="#">
-                <PiNewspaperBold color="white" />
-              </a>
-              <a className="text-white mt-1 text-xs" href="#">Başvurularım</a>
-            </div>
-          </li>
-
-          <li className="p-2">
-            <div className="flex flex-col items-center">
-              <a href="#">
-                <PiProjectorScreenChartBold color="white" />
-              </a>
-              <a className="text-white mt-1 text-xs" href="#">Projelerim</a>
-            </div>
-          </li>
-
-          <li className="p-2">
-            <div className="flex flex-col items-center">
-              <a href="#">
-                <BiBadgeCheck color="white" />
-              </a>
-              <a className="text-white mt-1 text-xs" href="#">İlan Eşleşmelerim</a>
-            </div>
-          </li>
-          <li className="p-2">< a href="#"><img className="h-10" src="https://vizyonergenc.com/images/kok_logo_renkli_png.png" width={40}></img></a></li>
-          <li className="p-2">< a href="#"><img className="h-10" src="https://vizyonergenc.com/images/kalfa_logo_renkli.png" width={40}></img></a></li>
-          
-          <li className="p-2">
-            <input
-              type="search"
-              placeholder=" Ara"
-              style={{
-                width: '80%',
-                height: '36px',
-                borderRadius: '5px',
-                border: 'none',
-                padding: '5px',
-                fontFamily: 'Arial, sans-serif',
-                fontSize: '16px',
-                color: '#333',
-                backgroundColor: '#f2f2f2',
-                marginTop: '2px',
-                marginLeft: '20px',
-                borderRadius: '35px',
-              }}
-            />
-          </li>
-        </ul>
-
-        <ul className="flex">
-          <li className="p-2 mx-2">
-            <div className="flex flex-col items-center">
-              <a href="#">
-                <BiMessage color="white" size={25} />
-                <a className="text-white mt-1 text-xs" href="#"></a>
-              </a>
-            </div>
-          </li>
-
-          <li className="p-2 mx-2">
-            <div className="flex flex-col items-center">
-              <a href="#">
-                <BiBell color="white" size={25} />
-                <a className="text-white mt-1 text-xs" href="#"></a>
-              </a>
-            </div>
-          </li>
-
-          <li className="p-2 mx-2">
-            <div className="flex flex-col items-center">
-              <a href="#">
-                <AiOutlineUser color="white" size={25} />
-                <a className="text-white mt-1 text-xs" href="#"></a>
-              </a>
-            </div>
-          </li>
-        </ul>
-
+          <ul className="flex">
+            <li key={0} className="relative p-2 mx-2">
+              <div className="flex flex-col items-center">
+                <a href="#">
+                  <BiBell color="white" size={25} />
+                </a>
+                <a className="text-white mt-1 text-xs" href="#">
+                  {/* The label for the message icon (if any) */}
+                </a>
+              </div>
+            </li>
+            <li key={1} className="relative p-2 mx-2">
+              <div className="flex flex-col items-center">
+                <a href="#">
+                  <BiMessage color="white" size={25} />
+                </a>
+              </div>
+            </li>
+            <li key={2} className="relative p-2 mx-2" ref={dropdownRef}>
+              <div className="flex flex-col items-center">
+                <a href="#" onClick={handleUserIconClick}>
+                  {React.createElement(AiOutlineUser, { color: "white", size: 25 })}
+                </a>
+                <a className="text-white mt-1 text-xs" href="#">
+                  {/* The label for the user icon (if any) */}
+                </a>
+                {isUserDropdownOpen && (
+                  <ul
+                    className="absolute top-10 right-0 bg-white rounded-md shadow-md p-2"
+                    style={{ width: "130px" }}
+                  >
+                    {/* Dropdown options for user icon */}
+                    <li className="p-2">
+                      <div className="flex items-center">
+                        <MdFace size={20} color="black" />
+                        <Link to="/profil" className="text-black ml-2 ">
+                             Profilim
+                        </Link>
+                      </div>
+                    </li>
+                    <li className="p-2">
+                      <div className="flex items-center">
+                        <AiOutlineSetting size={20} color="black" />
+                        <a className="text-black ml-2 " href="#">
+                           Ayarlar
+                        </a>
+                      </div>
+                    </li>
+                    <li className="p-2">
+                    <div className="flex items-center">
+                        <AiOutlinePoweroff size={20} color="black" />
+                        <a className="text-black ml-2 " href="#">
+                          Çıkış Yap
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                )}
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
+      {/* Render the rest of the components */}
+      {/* ... */}
     </div>
-  )
-}
+  );
+};
+
+export default Header;
