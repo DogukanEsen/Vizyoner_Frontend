@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { AiOutlineHome, AiOutlineUnorderedList, AiOutlineQuestionCircle, AiOutlineUser, AiOutlineSetting,AiOutlinePoweroff } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineUnorderedList, AiOutlineQuestionCircle, AiOutlineUser, AiOutlineSetting, AiOutlinePoweroff } from 'react-icons/ai';
 import { PiBagSimple, PiNewspaperBold, PiProjectorScreenChartBold } from 'react-icons/pi';
 import { BiBadgeCheck, BiMessage, BiBell } from 'react-icons/bi';
 import { MdFace } from 'react-icons/md';
@@ -38,60 +38,63 @@ const Header = () => {
 
   return (
     <div>
-      <div className="bg-[#0073b5] p-1" style={headerStyle}>
-        <div className="flex justify-between items-center h-18 max-w-[1240px] mx-auto px-4">
-          <Link to="/anasayfa" href="#">
-            <img src="https://vizyonergenc.com/v2/images/logo2.png" width={100} alt="Logo" />
-            </Link>
+    <div className="bg-[#0073b5] p-1" style={headerStyle}>
+      <div className="flex justify-between items-center h-18 max-w-[1240px] mx-auto px-4">
+        <a href="#">
+          <img src="https://vizyonergenc.com/v2/images/logo2.png" width={100} alt="Logo" />
+        </a>
 
-          <ul className="flex -ml-10">
-            {[
-              { icon: AiOutlineHome, label: "Anasayfa"},
-              { icon: PiBagSimple, label: "İlanlar" },
-              { icon: AiOutlineUnorderedList, label: "Firmalar" },
-              { icon: PiNewspaperBold, label: "Başvurularım" },
-              { icon: PiProjectorScreenChartBold, label: "Projelerim" },
-              { icon: BiBadgeCheck, label: "İlan Eşleşmelerim" }
-            ].map((item, index) => (
-              <li key={index} className="p-2">
-                <div className="flex flex-col items-center">
-                  <a href="#">
-                    {React.createElement(item.icon, { color: "white" })}
-                  </a>
-                  <a className="text-white mt-1 text-xs" href="#">{item.label}</a>
-                </div>
-              </li>
-            ))}
+        <ul className="flex -ml-10">
+          {[
+            { icon: AiOutlineHome, label: "Anasayfa", link: "/anasayfa" },
+            { icon: PiBagSimple, label: "İlanlar", link: "/ilanlar" },
+            { icon: AiOutlineUnorderedList, label: "Firmalar", link: "/firmalar" },
+            { icon: PiNewspaperBold, label: "Başvurularım", link: "/basvurularim" },
+            { icon: PiProjectorScreenChartBold, label: "Projelerim", link: "/projelerim" },
+            { icon: BiBadgeCheck, label: "İlan Eşleşmelerim", link: "/ilan-eslesmelerim" }
+          ].map((item, index) => (
+            <li key={index} className="p-2">
+              <div className="flex flex-col items-center">
+                {/* Use Link instead of a */}
+                <Link to={item.link}>
+                  {React.createElement(item.icon, { color: "white" })}
+                </Link>
+                <a className="text-white mt-1 text-xs" href="#">
+                  {item.label}
+                </a>
+              </div>
+            </li>
+          ))}
 
-            {/* Additional Images */}
-            <li className="p-2">
-              <a href="#"><img className="h-10" src="https://vizyonergenc.com/images/kok_logo_beyaz.png" width={40} alt="Image1" /></a>
-            </li>
-            <li className="p-2">
-              <a href="#"><img className="h-10" src="https://vizyonergenc.com/images/kalfa_logo_beyaz.png" width={40} alt="Image2" /></a>
-            </li>
+          {/* Additional Images */}
+          <li className="p-2">
+            <a href="#"><img className="h-10" src="https://vizyonergenc.com/images/kok_logo_beyaz.png" width={40} alt="Image1" /></a>
+          </li>
+          <li className="p-2">
+            <a href="#"><img className="h-10" src="https://vizyonergenc.com/images/kalfa_logo_beyaz.png" width={40} alt="Image2" /></a>
+          </li>
 
-            <li className="p-2">
-              <input
-                type="search"
-                placeholder=" Ara"
-                style={{
-                  width: '80%',
-                  height: '36px',
-                  borderRadius: '5px',
-                  border: 'none',
-                  padding: '5px',
-                  fontFamily: 'Arial, sans-serif',
-                  fontSize: '16px',
-                  color: '#333',
-                  backgroundColor: '#f2f2f2',
-                  marginTop: '2px',
-                  marginLeft: '20px',
-                  borderRadius: '35px',
-                }}
-              />
-            </li>
-          </ul>
+          <li className="p-2">
+            <input
+              type="search"
+              placeholder=" Ara"
+              style={{
+                width: '80%',
+                height: '36px',
+                borderRadius: '5px',
+                border: 'none',
+                padding: '5px',
+                fontFamily: 'Arial, sans-serif',
+                fontSize: '16px',
+                color: '#333',
+                backgroundColor: '#f2f2f2',
+                marginTop: '2px',
+                marginLeft: '20px',
+                borderRadius: '35px',
+              }}
+            />
+          </li>
+        </ul>
 
           <ul className="flex">
             <li key={0} className="relative p-2 mx-2">
@@ -129,7 +132,7 @@ const Header = () => {
                       <div className="flex items-center">
                         <MdFace size={20} color="black" />
                         <Link to="/profil" className="text-black ml-2 ">
-                             Profilim
+                          Profilim
                         </Link>
                       </div>
                     </li>
@@ -137,12 +140,12 @@ const Header = () => {
                       <div className="flex items-center">
                         <AiOutlineSetting size={20} color="black" />
                         <a className="text-black ml-2 " href="#">
-                           Ayarlar
+                          Ayarlar
                         </a>
                       </div>
                     </li>
                     <li className="p-2">
-                    <div className="flex items-center">
+                      <div className="flex items-center">
                         <AiOutlinePoweroff size={20} color="black" />
                         <a className="text-black ml-2 " href="#">
                           Çıkış Yap
@@ -162,4 +165,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Header;
