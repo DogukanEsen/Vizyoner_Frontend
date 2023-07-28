@@ -1,6 +1,5 @@
 import { useFormik } from "formik";
-import { motion as m } from "framer-motion";
-
+import "./Resume.css";
 export default function Resume() {
   const formik = useFormik({
     initialValues: {
@@ -16,18 +15,10 @@ export default function Resume() {
       gpa: "",
       grade: "",
       department: "",
-      photo: null, // Add a new field for the photo file
     },
   });
 
-  const kategoriOptions = ["Option 1", "Option 2", "Option 3"];
-
-  const handlePhotoChange = (event) => {
-    // Get the selected file from the input event
-    const file = event.currentTarget.files[0];
-    // Update the formik state with the selected file
-    formik.setFieldValue("photo", file);
-  };
+  
 
   const renderFormFields = (fields) => {
     return fields.map((field) => (
@@ -44,20 +35,15 @@ export default function Resume() {
         </label>
         <p></p>
         {field === "Kategori" ? (
-          <select
-            className="border-2 border-gray-500 p-2 rounded-md w-full focus:border-teal-500 focus:ring-teal-500"
-            name={field}
-            value={formik.values[field]}
-            onBlur={formik.handleBlur}
-            onChange={formik.handleChange}
-          >
-            <option value="">Select an option</option>
-            {kategoriOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
+          <textarea
+          className="border-2 border-gray-500 p-2 rounded-md w-full h-20 resize-y overflow-y-auto"
+          name={field}
+          placeholder={`${field.charAt(0).toUpperCase() + field.slice(1)} girin`}
+          onChange={formik.handleChange}
+          value={formik.values[field]}
+          onBlur={formik.handleBlur}
+          wrap="hard" // Set the wrap attribute to "hard"
+        />
         ) : field === "Hakkımda" ? (
           <textarea
             className="border-2 border-gray-500 p-2 rounded-md w-full h-20 resize-y overflow-y-auto"
@@ -91,16 +77,12 @@ export default function Resume() {
   };
 
   return (
-    <div>
-      <m.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="absolute w-full"
-      >
-        <main className="h-screen items-center flex justify-center">
+      
+        <main className="h-screen items-center flex justify-center pt-80">
           {/* Kimlik Bilgileri Form */}
-          <div className="flex">
+              
+          <div className="flex pt-80 ">
+            
             <form className="bg-white flex rounded-lg w-9/10 font-latoRegular">
               <div className="flex-1 text-gray-700 p-20">
                 <h1 className="text-3xl pb-2 font-latoBold">Kimlik Bilgileri 🪪</h1>
@@ -147,7 +129,6 @@ export default function Resume() {
             </form>
           </div>
         </main>
-      </m.div>
-    </div>
+     
   );
 }
