@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 function index() {
   return (
     <div>
-      <HeaderMain />
+    <HeaderMain/>
       <CardUI />
       <Footer />
     </div>
