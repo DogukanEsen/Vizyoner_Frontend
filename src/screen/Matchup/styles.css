@@ -1,0 +1,27 @@
+.app-main {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
+
+  color: #333;
+}
+
+.content-column,
+.nav-column {
+  border-radius: 10px 20px 30px 40px;
+}
+
+.custom-font {
+  font-family: "Your Custom Font", sans-serif;
+}
+/* styles.css */
+
+/* Add your other styles here */
+
+.text-blue-500 {
+  color: #0074d9; /* Change the color code to your desired shade of blue */
+}
+
+/* Add your other styles here */
