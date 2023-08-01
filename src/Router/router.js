@@ -1,18 +1,12 @@
-import Login from '../screen/Login'
-import Register from '../screen/Register'
-import Home from '../screen/Home'
-import Instational from '../screen/Instational'
-import Profile from '../screen/Profile'
-import Companies from '../screen/Companies'
-import Info from '../screen/Info'
-import {
-  BrowserRouter,
-  Link,
-  Route,
-  Routes,
-} from "react-router-dom";
-import { InstallMobileOutlined } from '@mui/icons-material';
-import Instational_main from '../screen/Instational_main'
+import Login from "../screen/Login";
+import Register from "../screen/Register";
+import Home from "../screen/Home";
+import Instational from "../screen/Instational";
+import Profile from "../screen/Profile";
+import Companies from "../screen/Companies";
+import Announcement from "../screen/Announcement";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+// import { Announcement, InstallMobileOutlined } from "@mui/icons-material";
 
 export default function App() {
   return (
