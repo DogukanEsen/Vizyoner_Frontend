@@ -1,13 +1,15 @@
 import React from "react";
-import HeaderMain from  '../../components/HeaderMain'
 import CreateAdvert from  '../../components/CreateAdvert'
+import { Navbar } from "../../components/Navbar";
+import { Sidebar } from "../../components/Sidebar";
 
 
 
 function index() {
   return (
     < div>
-      <HeaderMain/>
+      <Navbar/>
+      <Sidebar/>
       <CreateAdvert/>
     </div>
   );

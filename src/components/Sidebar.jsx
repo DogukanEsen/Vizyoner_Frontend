@@ -1,6 +1,7 @@
 import { Home,Apartment,ListAlt,FormatListBulleted,SkipPrevious,Description,SentimentSatisfiedAlt,Message} from '@mui/icons-material'
 import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 export const Sidebar = () => {
   return (
@@ -10,9 +11,9 @@ export const Sidebar = () => {
           <ListItem disablePadding>
             <ListItemButton component="a" href="#home">
               <ListItemIcon>
-                <Home style={{color:'black'}}/>
+               <Home style={{color:'black'}}/>
               </ListItemIcon>
-              <ListItemText primary="Anasayfa" />
+             <Link to="/kurumsalana"><ListItemText primary="Anasayfa" /></Link>
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -20,7 +21,7 @@ export const Sidebar = () => {
               <ListItemIcon>
                 <Apartment style={{color:'red'}}/>
               </ListItemIcon>
-              <ListItemText primary="Firma Bilgileri" />
+            <Link to="/firmabilgi"><ListItemText primary="Firma Bilgileri" /></Link>
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -28,7 +29,7 @@ export const Sidebar = () => {
               <ListItemIcon>
                 <FormatListBulleted style={{color:'blue'}}/>
               </ListItemIcon>
-              <ListItemText primary="İlanlar" />
+              <Link to="/ilanolusturma"><ListItemText primary="İlanlar" /></Link>
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>

@@ -1,11 +1,13 @@
 import React from "react";
-import HeaderMain from  '../../components/HeaderMain'
 import CompInfo from  '../../components/CompInfo'
+import { Navbar } from "../../components/Navbar";
+import { Sidebar } from "../../components/Sidebar";
 
 function index() {
   return (
     <div>
-      <HeaderMain/>
+      <Navbar/>
+      <Sidebar/>
       <CompInfo/>
     </div>
   );

@@ -1,9 +1,10 @@
 import React from 'react'
-import { Rightbar } from './Rightbar'
-import {Feed} from './Feed'
-import {Navbar} from './Navbar'
-import {Sidebar} from './Sidebar'
+import { Rightbar } from '../../components/Rightbar'
+import {Feed} from '../../components/Feed'
+import {Navbar} from '../../components/Navbar'
+import {Sidebar} from '../../components/Sidebar'
 import { Box, Stack } from '@mui/material'
+
 
 export default function 
 () {
@@ -16,7 +17,6 @@ export default function
         <Feed/>
         <Rightbar/>
        </Stack>
-        
        </Box>
     </div>
   )
