@@ -10,18 +10,42 @@
 
 .content-column,
 .nav-column {
-  border-radius: 10px 20px 30px 40px;
+  border-radius: 1px 20px 30px 40px;
 }
 
 .custom-font {
   font-family: "Your Custom Font", sans-serif;
 }
-/* styles.css */
-
-/* Add your other styles here */
 
 .text-blue-500 {
   color: #0074d9; /* Change the color code to your desired shade of blue */
 }
 
-/* Add your other styles here */
+.right-align {
+  text-align: right;
+}
+.content-left-offset {
+  padding-top: 300px; /* Add your desired gap value here */
+}
+
+.empty-block {
+  height: 50px; /* Adjust the height as needed */
+}
+/* styles.css */
+
+.bg-sea-green {
+  background-color: rgb(226, 244, 220);
+  /* Add any other desired styles for this class */
+}
+/* styles.css */
+
+.gray-text {
+  color: rgb(115, 113, 113);
+  /* Add any other desired styles for this class */
+}
+/* styles.css */
+
+.justify-end {
+  justify-content: flex-end;
+  /* Add any other desired styles for this class */
+}
