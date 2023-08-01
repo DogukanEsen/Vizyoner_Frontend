@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import Validation from './Validation';
+import { Link } from 'react-router-dom'; 
 
 export default function Index() {
    const [values, setValues] = useState({
@@ -50,7 +51,11 @@ export default function Index() {
           <div className='flex justify-between text-gray-400 py-2'>
           <p>Hesabınız yok mu?  <u>Kayıt olun..</u></p>
           </div>
-          <div><button className="w-full my-5 py-2 bg-green-500 shadow-lg hover:shadow-teal-600/60 font-semibold rounded-lg" type="submit">Oturum Aç</button></div>
+          <Link to={"/kurumsalana/"}>
+  <div>
+    <button className="w-full my-5 py-2 bg-green-500 shadow-lg hover:shadow-teal-600/60 font-semibold rounded-lg" type="submit">Oturum Aç</button>
+  </div>
+</Link>
         </form>
         </div>
         <div>
