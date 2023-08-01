@@ -24,7 +24,7 @@ export default function App() {
         <Route path="/kurumsal" element={<Instational/>}/>
         <Route path="/profil" element={<Profile/>}/>
         <Route path="/firmalar" element={<Companies/>}/>
-        <Route path="/ilanlar" element={<Advert/>}/>     
+        <Route path="/ilanlar1" element={<Advert/>}/>     
         <Route path="/ilanolusturma" element={<CreateAdvert/>}/>
         <Route path="/firmabilgi" element={<CompInfo/>}/>
         <Route path="/sirketler" element={<Companies/>}/>
