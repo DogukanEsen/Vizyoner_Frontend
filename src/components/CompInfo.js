@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const Resume = () => {
+const Comp = () => {
     const [startDate, setStartDate] = useState(null);
 
-    const formikResume = useFormik({
+    const formikComp = useFormik({
         initialValues: {
             category: "",
             name: "",
@@ -140,12 +140,12 @@ const Resume = () => {
                         <hr />
                         <hr />
                         <div className="mt-6">
-                            {renderFormFields(["name", "category", "content", "startDate", "image", "location"], formikResume)}
+                            {renderFormFields(["name", "category", "content", "startDate", "image", "location"], formikComp)}
                             <button
                                 type="submit"
                                 className="bg-[#0073b5] font-latoBold text-sm text-white py-3 mt-6 rounded-lg w-full"
                             >
-                                Submit!
+                                Firma kayıt!
                             </button>
                         </div>
                     </div>
@@ -155,4 +155,4 @@ const Resume = () => {
     );
 };
 
-export default Resume;
+export default Comp;

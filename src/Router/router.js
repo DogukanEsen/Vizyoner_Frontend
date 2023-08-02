@@ -10,7 +10,7 @@ import Companies from "../screen/Companies";
 import Info from "../screen/Info";
 import InstationalMain from "../screen/InstationalMain";
 import CompInfo from "../screen/CompInfo";
-import Announcement from "../screen/Announcement";
+import Application from "../screen/Application";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 // import { Announcement, InstallMobileOutlined } from "@mui/icons-material";
 
@@ -30,7 +30,7 @@ export default function App() {
         <Route path="/sirketler" element={<Companies/>}/>
         <Route path="/ilanlar" element={<Info/>}/>
         <Route path ="/kurumsalana" element={<InstationalMain/>}/>
-      
+        <Route path ="/basvuruform" element={<Application/>}/>
         
         
         

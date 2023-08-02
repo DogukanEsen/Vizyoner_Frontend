@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const Resume = () => {
+const Advert = () => {
 
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [updateDate, setUpdateDate] = useState(null);
 
-    const formikResume = useFormik({
+    const formikAdvert = useFormik({
         initialValues: {
             category: "",
             title: "",
@@ -163,12 +163,12 @@ const Resume = () => {
                                 "updateDate",
                                 "image",
                                 "description",
-                            ], formikResume)}
+                            ], formikAdvert)}
                             <button
                                 type="submit"
                                 className="bg-[#0073b5] font-latoBold text-sm text-white py-3 mt-6 rounded-lg w-full"
                             >
-                                Submit!
+                                İlan Oluştur!
                             </button>
                         </div>
                     </div>
@@ -178,4 +178,4 @@ const Resume = () => {
     );
 };
 
-export default Resume;
+export default Advert;
