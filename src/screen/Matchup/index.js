@@ -63,22 +63,7 @@ function App() {
 
         {/* Middle content column */}
         <Col xs={7} className="content-column">
-          <div className="grid grid-cols-1 gap-5 p-8">
-            <div className="bg-sea-green bg-white rounded-lg border-2 w-full h-45">
-              <div className="grid grid-cols-1 gap-5 p-5">
-                <h className="gray-text">
-                  Tamamlanmayan başvuru süreçleri için firmalardan sonuç
-                  listesinin iletilmesi beklenmektedir. Sonuç aşamaları firma
-                  tarafından yürütülmekte olup ilanı yayınlayan firmaların sonuç
-                  açıklama işlemi için bizlere kabul listelerini iletmeleri
-                  gerekmektedir.
-                </h>
-
-                <h className="gray-text">Anlayışınız için teşekkür ederiz.</h>
-                <div className="bg-white rounded-lg w-full h-45"></div>
-              </div>
-            </div>
-          </div>
+          <div className="grid grid-cols-1 gap-5 p-8"></div>
           <h1 className="dark:text-white font-bold text-2xl p-2 text-center">
             SİZİN İÇİN ÖNERİLEN İLANLAR
           </h1>
