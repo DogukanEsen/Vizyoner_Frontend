@@ -26,6 +26,8 @@ const Resume = () => {
   });
 
   const renderFormFields = (fields, formik) => {
+
+
     return fields.map((field) => (
       <div key={field} className="pb-4">
         <label
@@ -37,6 +39,7 @@ const Resume = () => {
             ? formik.errors[field]
             : field.charAt(0).toUpperCase() + field.slice(1)}
         </label>
+
         {field === "Kategori" || field === "Hakkımda" ? (
           <textarea
             className="border-2 border-gray-500 p-2 rounded-md w-full h-20 resize-y overflow-y-auto"
@@ -47,6 +50,7 @@ const Resume = () => {
             onBlur={formik.handleBlur}
             wrap="hard"
           />
+          
         ) : field === "Vesikalık" ? (
           <div>
             <input

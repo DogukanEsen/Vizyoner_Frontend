@@ -10,9 +10,9 @@ import Companies from "../screen/Companies";
 import Info from "../screen/Info";
 import InstationalMain from "../screen/InstationalMain";
 import CompInfo from "../screen/CompInfo";
-import Announcement from "../screen/Announcement";
 import Matchup from "../screen/Matchup";
 import MyApplication from "../screen/MyApplication";
+import Application from "../screen/Application";
 
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 // import { Announcement, InstallMobileOutlined } from "@mui/icons-material";
@@ -35,6 +35,7 @@ export default function App() {
         <Route path="/kurumsalana" element={<InstationalMain />} />
         <Route path="/ilan-eslesmelerim" element={<Matchup />} />
         <Route path="/basvurular" element={<MyApplication />} />
+        <Route path ="/basvuruform" element={<Application/>}/>
       </Routes>
     </BrowserRouter>
   );
