@@ -25,62 +25,13 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="global-footer-alt">
-            <div className="col-s-13 text-center text-blue-500">
-              <a href="https://vizyonergenc.com/">Kariyer</a>{" "}
-              <a href="https://vizyonergenc.com/">Blog</a>{" "}
-              <a href="https://vizyonergenc.com/">Etkinlik</a> <br></br>
-              <a href="https://vizyonergenc.com/">SSB Katalog</a>{" "}
-              <a href="https://vizyonergenc.com/">Hakkında</a> <br></br>
-              <a href="https://vizyonergenc.com/">Misyon Vizyon</a>{" "}
-              <a href="https://vizyonergenc.com/">Hizmet_Koşulları</a> <br></br>
-              <a href="https://vizyonergenc.com/">KVKK_Sözleşmesi</a> <br></br>
-              <a href="https://vizyonergenc.com/">Sık Sorulan Sorular</a>{" "}
-              <a href="https://vizyonergenc.com/">Bize Ulaş</a>
-            </div>
-          </div>
-          <div className="global-footer-alt">
-            <div className="col-s-13 text-center">
-              <p>-------------------------------------</p>
-              Vizyoner Genç
-              <br />
-              <img
-                src="https://vizyonergenc.com/v2/images/SSB_amblem_2022.png"
-                alt="SAVUNMA SANAYİİ BAŞKANLIĞI"
-                data-tippy-placement="top"
-                data-tippy-theme="light"
-                data-tippy=""
-                data-original-title="SAVUNMA SANAYİİ BAŞKANLIĞI"
-                width="25px"
-                style={{ margin: "0 auto" }}
-              />
-              T.C. Cumhurbaşkanlığı - Savunma Sanayii <br></br>Başkanlığı
-              himayesinde yürütülmektedir.
-              <br />© 2023 Vizyoner Genç
-            </div>
-          </div>
         </Col>
 
         {/* Middle content column */}
         <Col xs={7} className="content-column">
-          <div className="grid grid-cols-1 gap-5 p-8">
-            <div className="bg-sea-green bg-white rounded-lg border-2 w-full h-45">
-              <div className="grid grid-cols-1 gap-5 p-5">
-                <h className="gray-text">
-                  Tamamlanmayan başvuru süreçleri için firmalardan sonuç
-                  listesinin iletilmesi beklenmektedir. Sonuç aşamaları firma
-                  tarafından yürütülmekte olup ilanı yayınlayan firmaların sonuç
-                  açıklama işlemi için bizlere kabul listelerini iletmeleri
-                  gerekmektedir.
-                </h>
-
-                <h className="gray-text">Anlayışınız için teşekkür ederiz.</h>
-                <div className="bg-white rounded-lg w-full h-45"></div>
-              </div>
-            </div>
-          </div>
+          <div className="grid grid-cols-1 gap-5 p-8"></div>
           <h1 className="dark:text-white font-bold text-2xl p-2 text-center">
-            SİZİN İÇİN ÖNERİLEN İLANLAR
+            BAŞVURULARIM
           </h1>
           <div className="grid grid-cols-1 gap-1 p-8">
             <div className="bg-white rounded-lg w-full h-45 rounded-lg border-2">

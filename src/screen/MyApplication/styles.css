@@ -38,6 +38,10 @@
   background-color: rgb(226, 244, 220);
   /* İstenilen stil değişikliklerini buraya ekleyin */
 }
+.bg-light-grey {
+  background-color: rgb(232, 232, 232);
+  /* İstenilen stil değişikliklerini buraya ekleyin */
+}
 
 .gray-text {
   color: rgb(115, 113, 113);
@@ -48,3 +52,21 @@
   justify-content: flex-end;
   /* İstenilen stil değişikliklerini buraya ekleyin */
 }
+.rounded-lg-more {
+  border-radius: 20px; /* Adjust the value to make the corners more rounded */
+}
+/* styles.css */
+
+/* styles.css */
+
+/* Add the following classes for Flexbox alignment */
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items: flex-start;
+}
+
+/* Rest of your CSS code */
+
+/* Rest of your CSS code */

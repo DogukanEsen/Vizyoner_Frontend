@@ -12,6 +12,7 @@ import InstationalMain from "../screen/InstationalMain";
 import CompInfo from "../screen/CompInfo";
 import Announcement from "../screen/Announcement";
 import Matchup from "../screen/Matchup";
+import MyApplication from "../screen/MyApplication";
 
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 // import { Announcement, InstallMobileOutlined } from "@mui/icons-material";
@@ -32,7 +33,8 @@ export default function App() {
         <Route path="/sirketler" element={<Companies />} />
         <Route path="/ilanlar" element={<Info />} />
         <Route path="/kurumsalana" element={<InstationalMain />} />
-        <Route path="/eşleşme" element={<Matchup />} />
+        <Route path="/ilan-eslesmelerim" element={<Matchup />} />
+        <Route path="/basvurular" element={<MyApplication />} />
       </Routes>
     </BrowserRouter>
   );
