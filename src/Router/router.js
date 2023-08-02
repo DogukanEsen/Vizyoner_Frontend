@@ -13,7 +13,6 @@ import CompInfo from "../screen/CompInfo";
 import Matchup from "../screen/Matchup";
 import MyApplication from "../screen/MyApplication";
 import Application from "../screen/Application";
-
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 // import { Announcement, InstallMobileOutlined } from "@mui/icons-material";
 
