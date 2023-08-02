@@ -1,0 +1,48 @@
+.app-main {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    color: #333;
+  }
+  
+  .content-column,
+  .nav-column {
+    border-radius: 1px 20px 30px 40px;
+  }
+  
+  .custom-font {
+    font-family: "Your Custom Font", sans-serif;
+  } 
+  
+  .text-blue-500 {
+    color: #0074d9; /* İstenilen mavi tonuna göre renk kodunu değiştirin */
+  }
+  
+  .right-align {
+    text-align: right;
+  }
+  
+  .content-left-offset {
+    padding-top: 300px; /* İstenilen boşluk değerini buraya ekleyin */
+  }
+  
+  .empty-block {
+    height: 50px; /* İhtiyaç doğrultusunda yüksekliği ayarlayın */
+  }
+  
+  .bg-sea-green {
+    background-color: rgb(226, 244, 220);
+    /* İstenilen stil değişikliklerini buraya ekleyin */
+  }
+  
+  .gray-text {
+    color: rgb(115, 113, 113);
+    /* İstenilen stil değişikliklerini buraya ekleyin */
+  }
+  
+  .justify-end {
+    justify-content: flex-end;
+    /* İstenilen stil değişikliklerini buraya ekleyin */
+  }

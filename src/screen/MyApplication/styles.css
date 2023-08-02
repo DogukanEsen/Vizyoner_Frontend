@@ -1,0 +1,59 @@
+.app-main {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    color: #333;
+  }
+  
+  .content-column,
+  .nav-column {
+    border-radius: 1px 20px 30px 40px;
+  }
+  
+  .custom-font {
+    font-family: "Your Custom Font", sans-serif;
+  }
+  
+  .text-blue-500 {
+    color: #0074d9; 
+  }
+  
+  .right-align {
+    text-align: right;
+  }
+  
+  .content-left-offset {
+    padding-top: 300px; 
+  }
+  
+  .empty-block {
+    height: 50px; 
+  }
+  
+  .bg-sea-green {
+    background-color: rgb(226, 244, 220);
+  }
+  .bg-light-grey {
+    background-color: rgb(232, 232, 232);
+  }
+  
+  .gray-text {
+    color: rgb(115, 113, 113);
+  }
+  
+  .justify-end {
+    justify-content: flex-end;
+  }
+  .rounded-lg-more {
+    border-radius: 20px; 
+  }
+
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: flex-start;
+  }
+  
