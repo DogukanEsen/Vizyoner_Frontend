@@ -16,7 +16,7 @@ function App() {
     const fetchAdverts = async () => {
         try {
             const response = await axios.get(
-             " http://localhost:8080/api/adverts/getAllAdverts"
+             "http://localhost:8080/api/adverts/getAllAdverts"
             );
             setAdverts(response.data);
         } catch (err) {
