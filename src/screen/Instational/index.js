@@ -135,7 +135,10 @@ export default function Index() {
               </div>
               <div className="flex justify-between text-gray-400 py-2">
                 <p>
-                  Hesabınız yok mu? <u>Kayıt olun..</u>
+                  Hesabınız yok mu?{" "}
+                  <Link to="kurumsalkayit">
+                    <u>Kayıt olun..</u>
+                  </Link>{" "}
                 </p>
               </div>
               <Link to={"/kurumsalana/"}>

@@ -86,7 +86,7 @@ export default function Herosection() {
       );
 
       const result = response.data;
-      localStorage.setItem("tokenKey", result.accessToken);
+      localStorage.setItem("tokenKey", result.token);
       localStorage.setItem("currentUser", result.userId);
       localStorage.setItem("email", Email);
     } catch (err) {
@@ -95,8 +95,6 @@ export default function Herosection() {
   };
   const handleLogin = () => {
     sendRequest("login/user");
-    setEmail("");
-    setPassword("");
   };
   const [errors, setError] = useState({});
 
