@@ -49,7 +49,7 @@ export default function Index() {
             <a href="#"><p>Şifreni mi unuttun?</p></a>
           </div>
           <div className='flex justify-between text-gray-400 py-2'>
-          <p>Hesabınız yok mu?  <u>Kayıt olun..</u></p>
+          <p>Hesabınız yok mu? <Link to='kurumsalkayit'><u>Kayıt olun..</u></Link> </p>
           </div>
           <Link to={"/kurumsalana/"}>
   <div>

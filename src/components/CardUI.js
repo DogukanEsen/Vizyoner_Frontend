@@ -1,4 +1,7 @@
 import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 import {
   AiFillFacebook,
   AiFillLinkedin,
@@ -12,6 +15,21 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 
 function App() {
+  const [adverts, setAdverts] = useState([]); // useState fonksiyonunu düzgün bir şekilde kullanın
+  const fetchAdverts = async () => {
+      try {
+          const response = await axios.get(
+           " http://localhost:8080/api/adverts/getAllAdverts"
+          );
+          setAdverts(response.data);
+      } catch (err) {
+          console.log(err);
+      }
+  };
+
+  useEffect(() => {
+    fetchAdverts();
+  }, []);
   return (
     <div className="container">
       <div className="row">
@@ -67,117 +85,33 @@ function App() {
                   <p className="p-4">R-FORCE Genç Yetenek Programı 2023</p>
                 </div>
               </Link>
-              <div className=" flex bg-white shadow-lg  hover:shadow-teal-500  ">
-                <img
-                  className="w-[80px]"
-                  src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
-                  alt="ilan"
-                />
-                <p className="p-4">R-FORCE Genç Yetenek Programı 2023</p>
-              </div>
-              <div className=" flex bg-white shadow-lg  hover:shadow-teal-500  ">
-                <img
-                  className="w-[80px]"
-                  src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
-                  alt="ilan"
-                />
-                <p className="p-4">R-FORCE Genç Yetenek Programı 2023</p>
-              </div>
-              <div className=" flex bg-white shadow-lg  hover:shadow-teal-500  ">
-                <img
-                  className="w-[80px]"
-                  src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
-                  alt="ilan"
-                />
-                <p className="p-4">R-FORCE Genç Yetenek Programı 2023</p>
-              </div>
-            </div>
+             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-10 ">
-              <Link to="/ilanlar/">
-                <div className="bg-white rounded-lg shadow-lg  hover:shadow-teal-500  w-full h-45 ">
-                  <img
-                    className="w-full h-45 object-cover mb-4"
-                    src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
-                    alt="ilan"
-                  />
-                  <h3 className="text-lg font-semibold">Havelsan</h3>
-                  <p>Kıdemli İş Geliştirme Uzmanı</p>
-                </div>
-              </Link>
-              <div className="bg-white rounded-lg shadow-lg  hover:shadow-teal-500  w-full h-45 ">
-                <img
-                  className="w-full h-45 object-cover mb-4"
-                  src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
-                  alt="ilan"
-                />
-                <h3 className="text-lg font-semibold">Havelsan</h3>
-                <p>Kıdemli İş Geliştirme Uzmanı</p>
-              </div>
-              <div className="bg-white rounded-lg shadow-lg  hover:shadow-teal-500  w-full h-45 ">
-                <img
-                  className="w-full h-45 object-cover mb-4"
-                  src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
-                  alt="ilan"
-                />
-                <h3 className="text-lg font-semibold">Havelsan</h3>
-                <p>Kıdemli İş Geliştirme Uzmanı</p>
-              </div>
-              <div className="bg-white rounded-lg shadow-lg  hover:shadow-teal-500  w-full h-45 ">
-                <img
-                  className="w-full h-45 object-cover mb-4"
-                  src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
-                  alt="ilan"
-                />
-                <h3 className="text-lg font-semibold">Havelsan</h3>
-                <p>Kıdemli İş Geliştirme Uzmanı</p>
-              </div>
-              <div className="bg-white rounded-lg shadow-lg  hover:shadow-teal-500  w-full h-45 ">
-                <img
-                  className="w-full h-45 object-cover mb-4"
-                  src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
-                  alt="ilan"
-                />
-                <h3 className="text-lg font-semibold">Havelsan</h3>
-                <p>Kıdemli İş Geliştirme Uzmanı</p>
-              </div>
-              <div className="bg-white rounded-lg shadow-lg  hover:shadow-teal-500  w-full h-45 ">
-                <img
-                  className="w-full h-45 object-cover mb-4"
-                  src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
-                  alt="ilan"
-                />
-                <h3 className="text-lg font-semibold">Havelsan</h3>
-                <p>Kıdemli İş Geliştirme Uzmanı</p>
-              </div>
-              <div className="bg-white rounded-lg shadow-lg  hover:shadow-teal-500  w-full h-45 ">
-                <img
-                  className="w-full h-45 object-cover mb-4"
-                  src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
-                  alt="ilan"
-                />
-                <h3 className="text-lg font-semibold">Havelsan</h3>
-                <p>Kıdemli İş Geliştirme Uzmanı</p>
-              </div>
-              <div className="bg-white rounded-lg shadow-lg  hover:shadow-teal-500  w-full h-45 ">
-                <img
-                  className="w-full h-45 object-cover mb-4"
-                  src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
-                  alt="ilan"
-                />
-                <h3 className="text-lg font-semibold">Havelsan</h3>
-                <p>Kıdemli İş Geliştirme Uzmanı</p>
-              </div>
-              <div className="bg-white rounded-lg shadow-lg  hover:shadow-teal-500  w-full h-45 ">
-                <img
-                  className="w-full h-45 object-cover mb-4"
-                  src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
-                  alt="ilan"
-                />
-                <h3 className="text-lg font-semibold">Havelsan</h3>
-                <p>Kıdemli İş Geliştirme Uzmanı</p>
-              </div>
+
+
+
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-10">
+              {adverts.map((advert) => (
+                
+                <Link to="/ilanlar/" key={advert.id}>
+                  {console.log(advert)}
+                  <div className="bg-white rounded-lg shadow-lg hover:shadow-teal-500 w-full h-45 flex items-center justify-center">
+                     <img
+                      className="w-full h-45 object-cover mb-4"
+                      src={'data:image/png;base64,'+advert.image}
+                      alt="ilan"
+                    /> 
+                    <h3 className="text-lg font-semibold">{advert.title}</h3>
+                  </div>
+                </Link>
+              ))}
             </div>
+                
+                
+            
+         
+         
+            
           </Col>
         </Grid>
       </div>
