@@ -13,7 +13,7 @@ import CompInfo from "../screen/CompInfo";
 import Matchup from "../screen/Matchup";
 import MyApplication from "../screen/MyApplication";
 import Application from "../screen/Application";
-import Instationalregister from "../screen/Instationalregister/Index.js";
+import Instationalregister from "../screen/Instationalregister";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 export default function App() {
