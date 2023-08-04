@@ -41,7 +41,7 @@ export default function Index() {
       );
 
       const result = response.data;
-      localStorage.setItem("tokenKey", result.accessToken);
+      localStorage.setItem("userToken", result.token);
       localStorage.setItem("currentUser", result.userId);
       localStorage.setItem("email", Email);
     } catch (err) {
@@ -52,6 +52,7 @@ export default function Index() {
     sendRequest("login/user");
     setEmail("");
     setPassword("");
+    console.log(localStorage);
   };
   const [errors, setError] = useState({});
 

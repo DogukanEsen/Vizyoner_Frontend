@@ -96,11 +96,6 @@ function Index() {
           },
         }
       );
-
-      const result = response.data;
-      localStorage.setItem("tokenKey", result.accessToken);
-      localStorage.setItem("currentUser", result.userId);
-      localStorage.setItem("email", Email);
     } catch (err) {
       console.log(err);
     }
