@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Validation from "./Validation";
 import { Link } from "react-router-dom";
@@ -50,9 +50,6 @@ export default function Index() {
   };
   const handleLogin = () => {
     sendRequest("login/user");
-    setEmail("");
-    setPassword("");
-    console.log(localStorage);
   };
   const [errors, setError] = useState({});
 

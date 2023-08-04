@@ -1,21 +1,12 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from "react";
 import { AiOutlineSearch } from 'react-icons/ai';
+import axios from "axios";
 import ReactDOM from "react-dom";
 import { Grid, Row, Col } from "react-flexbox-grid";
 import "./styles.css";
+import { Link } from "react-router-dom";
 
 function App() {
-    const companiesData = [
-        { title: "Havelsan", logoUrl: "https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png" },
-        { title: "Aselsan", logoUrl: "https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png" },
-        { title: "Roketsan", logoUrl: "https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png" },
-        { title: "SAVUNMA SANAYİİ BAŞKANLIĞI", logoUrl: "https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png" },
-        { title: "Aselsannet", logoUrl: "https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png" },
-        { title: "ASARTECH", logoUrl: "https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png" },
-        { title: "BİAS Mühendislik", logoUrl: "https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png" },
-        { title: "BAYKAR Makina", logoUrl: "https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png" },
-        { title: "Aerotim MÜHENDİSLİK", logoUrl: "https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png" },
-    ];
 
     const containerStyle = {
         margin: '0 100px', 
@@ -27,9 +18,30 @@ function App() {
         setSearchQuery(e.target.value);
     };
 
-    const filteredCompanies = companiesData.filter((company) =>
-        company.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const [companiesData, setCompanies] = useState([]);
+
+    const fetchCompanies = async () => {
+        try {
+            const response = await axios.get(
+            "http://localhost:8080/company/listeleme"
+            );
+            setCompanies(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        fetchCompanies();
+    }, []);
+
+
+    //  const filteredCompanies = companiesData.filter((company) =>
+    //      company.title.includes(searchQuery)
+    //  );
+
+      
+       
 
     return (
         <div style={containerStyle}>
@@ -108,19 +120,22 @@ function App() {
                     <h1 className='dark:text-black font-bold font-roboto text-4xl p-2 text-center'>Firmalar</h1>
                     <br />
                     <hr />
+                    
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-10">
-                        {filteredCompanies.map((company, index) => (
-                            <div key={index} className="bg-white rounded-lg shadow-lg hover:shadow-gray-500 w-full h-45">
+                        {companiesData.map((company) => (
+                            <Link to="/ilanlar/" key={company.id}>
+                            <div className="bg-white rounded-lg shadow-lg hover:shadow-teal-500 w-full h-45 flex items-center justify-center">
                                 <img
-                                    className="w-full h-45 object-cover mb-4"
-                                    src={company.logoUrl}
-                                    alt="firma"
+                                className="w-full h-45 object-cover mb-4"
+                                src={'data:image/png;base64,'+company.image}
+                                alt="ilan"
                                 />
-                                <h3 className="text-lg font-semibold">{company.title}</h3>
-                                <br />
+                                <h3 className="text-lg font-semibold">{company.name}</h3>
                             </div>
+                            </Link>
                         ))}
-                    </div>
+                        </div>
+
 
                 </Col>
             </Grid>
