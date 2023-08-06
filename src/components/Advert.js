@@ -167,7 +167,7 @@ function App() {
                             <div key={index} className="bg-white rounded-lg shadow-lg hover:shadow-gray-500 w-full h-45">
                                 <img
                                     className="w-full h-45 object-cover mb-4"
-                                    src={advert.logoUrl}
+                                    src={'data:image/png;base64,' +advert.image}
                                     alt="ilan"
                                 />
                                 <h3 className="text-lg font-semibold">{advert.title}</h3>
