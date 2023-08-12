@@ -122,19 +122,22 @@ function App() {
                     <hr />
                     
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-10">
-                        {companiesData.map((company) => (
-                            <Link to="/ilanlar/" key={company.id}>
-                            <div className="bg-white rounded-lg shadow-lg hover:shadow-teal-500 w-full h-45 flex items-center justify-center">
-                                <img
-                                className="w-full h-45 object-cover mb-4"
-                                src={'data:image/png;base64,'+company.image}
-                                alt="ilan"
-                                />
-                                <h3 className="text-lg font-semibold">{company.name}</h3>
-                            </div>
-                            </Link>
-                        ))}
-                        </div>
+    {companiesData.map((company) => (
+        <Link to="/ilanlar/" key={company.id}>
+            <div className="bg-white rounded-lg shadow-lg hover:shadow-teal-500">
+                <img
+                    className="w-full h-40 object-contain"
+                    src={'data:image/png;base64,' + company.image}
+                    alt="ilan"
+                />
+                <div className="p-4">
+                    <h3 className="text-xl font-semibold">{company.name}</h3>
+                </div>
+            </div>
+        </Link>
+    ))}
+</div>
+
 
 
                 </Col>

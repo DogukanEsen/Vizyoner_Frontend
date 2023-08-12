@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Grid, Col } from "react-flexbox-grid";
 import "./styles.css";
 import HeaderMain from "../../components/HeaderMain";
@@ -8,6 +10,24 @@ import { FaCalendarAlt, FaClock } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 
 function App() {
+
+  const [companiesData, setCompanies] = useState([]);
+
+  const fetchCompanies = async () => {
+      try {
+          const response = await axios.get(
+          "http://localhost:8080/company/listeleme"
+          );
+          setCompanies(response.data);
+      } catch (err) {
+          console.log(err);
+      }
+  };
+
+  useEffect(() => {
+      fetchCompanies();
+  }, []);
+
   return (
     <div>
       <HeaderMain />
@@ -112,6 +132,7 @@ function App() {
                 </div>
               </div>
               <div className="bg-white  w-full h-45 border-2">
+                {/*
                 <div className="bg-white rounded-lg w-full h-45 p-4">
                   <h3 className="text-xl font-semibold text-blue-500">
                     ASELSAN
@@ -120,7 +141,7 @@ function App() {
                     Yazılım Geliştirme Uzmanı
                   </h4>
                 </div>
-
+              
                 <div className="bg-white w-full h-45 p-4">
                   <div className="flex mt-2 max-w-[450px]">
                     <AiOutlineEnvironment className="text-2xl" />
@@ -154,6 +175,7 @@ function App() {
                     </div>
                   </div>
                 </div>
+                */}
               </div>
             </div>
           </div>

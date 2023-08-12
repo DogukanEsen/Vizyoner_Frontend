@@ -16,7 +16,7 @@ function App() {
     const fetchAdverts = async () => {
         try {
             const response = await axios.get(
-             " http://localhost:8080/api/adverts/getAllAdverts"
+             "http://localhost:8080/api/adverts/getAllAdverts"
             );
             setAdverts(response.data);
         } catch (err) {
@@ -167,7 +167,7 @@ function App() {
                             <div key={index} className="bg-white rounded-lg shadow-lg hover:shadow-gray-500 w-full h-45">
                                 <img
                                     className="w-full h-45 object-cover mb-4"
-                                    src={advert.logoUrl}
+                                    src={'data:image/png;base64,' +advert.image}
                                     alt="ilan"
                                 />
                                 <h3 className="text-lg font-semibold">{advert.title}</h3>
