@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, Col } from "react-flexbox-grid";
 import "./styles.css";
 import HeaderMain from "../../components/HeaderMain";
@@ -6,8 +6,27 @@ import Footer from "../../components/Footer";
 import { AiOutlineEnvironment } from "react-icons/ai";
 import { FaCalendarAlt, FaClock } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+import axios from "axios";
 
 function App() {
+  const [applications, setApplications] = useState([]);
+  const fetchApplications = async () => {
+    axios
+      .get("http://localhost:8080/user/a", {
+        headers: {
+          Authorization: localStorage.getItem("tokenKey"), // Değiştirmeniz gereken oturum açma anahtarı (token) veya kimlik doğrulama bilgileri
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => res.json)
+      .then((response) => setApplications(response))
+      .catch((error) => console.log({ error }))
+      .then(console.log(applications));
+  };
+
+  useEffect(() => {
+    fetchApplications();
+  }, []);
   return (
     <div>
       <HeaderMain />

@@ -14,7 +14,14 @@ import Matchup from "../screen/Matchup";
 import MyApplication from "../screen/MyApplication";
 import Application from "../screen/Application";
 import Instationalregister from "../screen/Instationalregister";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Link,
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 
 export default function App() {
   return (
@@ -34,8 +41,11 @@ export default function App() {
         <Route path="/kurumsalana" element={<InstationalMain />} />
         <Route path="/ilan-eslesmelerim" element={<Matchup />} />
         <Route path="/basvurular" element={<MyApplication />} />
-        <Route path ="/basvuruform" element={<Application/>}/>
-        <Route path ="/kurumsal/kurumsalkayit" element={<Instationalregister/>}/>
+        <Route path="/basvuruform" element={<Application />} />
+        <Route
+          path="/kurumsal/kurumsalkayit"
+          element={<Instationalregister />}
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -15,21 +15,38 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 
 function App() {
-  const [adverts, setAdverts] = useState([]); // useState fonksiyonunu düzgün bir şekilde kullanın
-  const fetchAdverts = async () => {
-      try {
-          const response = await axios.get(
-           " http://localhost:8080/api/adverts/getAllAdverts"
-          );
-          setAdverts(response.data);
-      } catch (err) {
-          console.log(err);
-      }
-  };
+  // const [adverts, setAdverts] = useState([]); // useState fonksiyonunu düzgün bir şekilde kullanın
+  // const fetchAdverts = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       " http://localhost:8080/api/adverts/getAllAdverts"
+  //     );
+  //     setAdverts(response.data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
+  const instance = axios.create({
+    baseURL: "http://localhost:8080/users/a", // Burada localhost ve 8080, isteğin gönderileceği sunucunun adresi ve portu
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("tokenKey"),
+    },
+  });
+  const sendRequest = async (path) => {
+    try {
+      const response = await instance.get();
+
+      const result = response.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
-    fetchAdverts();
+    sendRequest();
   }, []);
+
   return (
     <div className="container">
       <div className="row">
@@ -85,33 +102,23 @@ function App() {
                   <p className="p-4">R-FORCE Genç Yetenek Programı 2023</p>
                 </div>
               </Link>
-             </div>
+            </div>
 
-
-
-
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-10">
-              {adverts.map((advert) => (
-                
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-10">
+              {/* {adverts.map((advert) => (
                 <Link to="/ilanlar/" key={advert.id}>
                   {console.log(advert)}
                   <div className="bg-white rounded-lg shadow-lg hover:shadow-teal-500 w-full h-45 flex items-center justify-center">
-                     <img
+                    <img
                       className="w-full h-45 object-cover mb-4"
-                      src={'data:image/png;base64,'+advert.image}
+                      src={"data:image/png;base64," + advert.image}
                       alt="ilan"
-                    /> 
+                    />
                     <h3 className="text-lg font-semibold">{advert.title}</h3>
                   </div>
                 </Link>
-              ))}
+              ))} */}
             </div>
-                
-                
-            
-         
-         
-            
           </Col>
         </Grid>
       </div>
