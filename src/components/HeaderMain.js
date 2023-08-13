@@ -14,7 +14,7 @@ import {
 } from "react-icons/pi";
 import { BiBadgeCheck, BiMessage, BiBell } from "react-icons/bi";
 import { MdFace } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
@@ -46,6 +46,14 @@ const Header = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+  //Çıkış yapma işlemleri
+  let navigate = useNavigate();
+  const LogOut = () => {
+    localStorage.removeItem("tokenKey");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("email");
+    navigate.go(0);
+  };
 
   return (
     <div>
@@ -198,7 +206,11 @@ const Header = () => {
                         onClick={handleLogoutClick}
                       >
                         <AiOutlinePoweroff size={20} color="black" />
-                        <a className="text-black ml-2" href="#">
+                        <a
+                          className="text-black ml-2"
+                          href="#"
+                          onClick={LogOut}
+                        >
                           Çıkış Yap
                         </a>
                       </div>

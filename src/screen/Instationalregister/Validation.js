@@ -6,7 +6,6 @@ const Validation=(values)=>
     {
       errors.name="Kullanıcı ismi ve soyismi boş geçilemez."
     }
-    
     else if(values.email==="")
     {
       errors.email="Kullanıcı email boş geçilemez."

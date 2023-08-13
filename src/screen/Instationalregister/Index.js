@@ -1,65 +1,14 @@
 import React from "react";
-import Header from "../../components/Header";
-import Mobileapp from "../../components/Mobileapp";
-import Footer from "../../components/Footer";
-import { Fade } from "react-slideshow-image";
-import "react-slideshow-image/dist/styles.css";
 import { useState } from "react";
-import Validation from "../Register/Validation";
+import Validation from "./Validation";
 import axios from "axios";
 
-const slideImages = [
-  {
-    url: "https://vizyonergenc.com/storage/posts/July2023/bNARrYSar3W6fEmJxdCy.jpg",
-    //caption: 'İlk Slayt'
-  },
-  {
-    url: "https://vizyonergenc.com/storage/posts/July2023/s2LAV4JbfeClIB3AWfA3.jpg",
-    //caption: 'İkinci Slayt'
-  },
-  {
-    url: "https://vizyonergenc.com/storage/1401761/j2YAyrHc1YKTVjCZNxjMmq3P9h4eFUbA8J7qaWZW.jpeg",
-    //caption: 'Üçüncü Slayt'
-  },
-  {
-    url: "https://media.licdn.com/dms/image/D4D22AQG_7i1KHQEAGg/feedshare-shrink_800/0/1685541970635?e=1692835200&v=beta&t=q6OPZoXwudMAlcnbrX0Ig0Nk1wnGrwJ7DB6jBoqaPq8",
-    //caption: 'Dördüncü Slayt'
-  },
-  {
-    url: "https://media.licdn.com/dms/image/D4D22AQHmPh9O14-LUA/feedshare-shrink_2048_1536/0/1689841293586?e=1692835200&v=beta&t=K3X2dGcKta-bUXq2jtytWV1iyucJDRc-ylq7M4loaGw",
-    //caption: 'Beşinci Slayt'
-  },
-  {
-    url: "https://media.licdn.com/dms/image/D4D22AQFqZmhSS29t-Q/feedshare-shrink_800/0/1688980662169?e=1692835200&v=beta&t=1hhzzvV7Ds_ueV7fxNu6-WELXgC_rabiI-3AHmV2io4",
-    //caption: 'Altıncı Slayt'
-  },
-];
-
-const divStyle = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  height: "500px",
-  backgroundSize: "contain",
-  backgroundRepeat: "no-repeat",
-  backgroundPosition: "center",
-  marginLeft: "30px",
-};
-
-const spanStyle = {
-  fontSize: "20px",
-  background: "#f4f4f5",
-  color: "#f4f4f5",
-};
-
-function Index() {
+export default function Index() {
   const [values, setValues] = useState({
-    name: "",
-    surname: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
+
   const [Email, setEmail] = useState({});
   const [Password, setPassword] = useState({});
   const [Username, setUsername] = useState({});
@@ -101,39 +50,42 @@ function Index() {
     }
   };
   const handleRegister = () => {
-    sendRequest("register/user");
+    sendRequest("register/firm");
     setUsername("");
     setEmail("");
     setPassword("");
   };
+
   const [errors, setError] = useState({});
 
   function handleChange(e) {
     setValues({ ...values, [e.target.name]: e.target.value });
   }
+
   function handleSubmit(e) {
     e.preventDefault();
     setError(Validation(values));
   }
   return (
     <div>
-      <Header />
-      <div className="grid grid-cols-1 sm:grid-cols-2 mx-auto">
-        <div className="slide-container">
-          <Fade>
-            {slideImages.map((image, index) => (
-              <div key={index}>
-                <div
-                  style={{ ...divStyle, backgroundImage: `url(${image.url})` }}
-                >
-                  <span style={spanStyle}>{image.caption}</span>
-                </div>
-              </div>
-            ))}
-          </Fade>
+      <div className="bg-zinc-100  p-2 ">
+        <div className="flex gap-60 items-center h-22 max-w-[1240px] px-2  ">
+          <a href="#">
+            <img
+              className="max-w-[250px] "
+              src="https://kurumsal.vizyonergenc.com/img/brand/logo.png"
+              alt="logo"
+            />
+          </a>
+          <a href="#">
+            <img
+              className="h-20"
+              src="https://kurumsal.vizyonergenc.com/img/brand/ssblogo.svg"
+              alt="logo"
+            />
+          </a>
         </div>
-
-        <div className="bg-zinc-100 flex flex-col justify-center sm-block">
+        <div className="grid grid-cols-1 sm:grid-cols-2 mx-auto">
           <form
             className="max-w-[500px] w-full mx-auto bg-zinc-100 p-5 px-10 rounded-lg"
             onSubmit={handleSubmit}
@@ -220,12 +172,12 @@ function Index() {
               </button>
             </div>
           </form>
+          <img
+            src="https://kurumsal.vizyonergenc.com/img/brand/login_bg.svg"
+            alt="kurumsal"
+          />
         </div>
       </div>
-      <Mobileapp />
-      <Footer />
     </div>
   );
 }
-
-export default Index;

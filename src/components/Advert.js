@@ -1,24 +1,32 @@
-import React, { useState } from 'react';
+
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Grid, Col } from 'react-flexbox-grid';
+import axios from "axios";
+import { useEffect, useState } from "react";
 import './styles.css';
+import { Link } from "react-router-dom";
 
 function App() {
-    const advertData = [
-        { title: 'Havelsan', logoUrl: 'https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png', category: 'staj' },
-        { title: 'Aselsan', logoUrl: 'https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png', category: 'is' },
-        { title: 'Roketsan', logoUrl: 'https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png', category: 'yarisma' },
-        { title: 'SAVUNMA SANAYİİ BAŞKANLIĞI', logoUrl: 'https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png', category: 'staj' },
-        { title: 'Aselsannet', logoUrl: 'https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png', typcategorye: 'is' },
-        { title: 'ASARTECH', logoUrl: 'https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png', category: 'staj' },
-        { title: 'BİAS Mühendislik', logoUrl: 'https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png', category: 'is' },
-        { title: 'BAYKAR Makina', logoUrl: 'https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png', category: 'yarisma' },
-        { title: 'Aerotim MÜHENDİSLİK', logoUrl: 'https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png', category: 'is' },
-    ];
 
     const containerStyle = {
         margin: '0 100px', // Adjust the margin value as per your preference
     };
+
+    const [advertData, setAdverts] = useState([]);
+    const fetchAdverts = async () => {
+        try {
+            const response = await axios.get(
+             "http://localhost:8080/api/adverts/getAllAdverts"
+            );
+            setAdverts(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+  
+    useEffect(() => {
+      fetchAdverts();
+    }, []);
 
     const [searchQuery, setSearchQuery] = useState('');
     const [filterOption, setFilterOption] = useState('all');
@@ -152,12 +160,14 @@ function App() {
                     <h1 className="dark:text-black font-bold font-roboto text-4xl p-2 text-center">İlanlar</h1>
                     <br />
                     <hr />
+
+                  
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-5 p-10">
                         {filteredAdvert.map((advert, index) => (
                             <div key={index} className="bg-white rounded-lg shadow-lg hover:shadow-gray-500 w-full h-45">
                                 <img
                                     className="w-full h-45 object-cover mb-4"
-                                    src={advert.logoUrl}
+                                    src={'data:image/png;base64,' +advert.image}
                                     alt="ilan"
                                 />
                                 <h3 className="text-lg font-semibold">{advert.title}</h3>
