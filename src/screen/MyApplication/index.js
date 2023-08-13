@@ -34,7 +34,7 @@ function App() {
             BAŞVURULARIM
           </h1>
           <div className="grid grid-cols-1 gap-1 p-8">
-            <div className="bg-white rounded-lg w-full h-45 rounded-lg border-2">
+            <div className="bg-white  w-full h-45 rounded-lg border-2">
               <div className="bg-white rounded-lg w-full h-45 p-4">
                 <h3 className="text-xl font-semibold text-blue-500">
                   HAVELSAN

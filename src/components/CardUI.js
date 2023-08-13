@@ -32,9 +32,7 @@ function App() {
                   <h1 className="text-gray-800 text-sm p-1">
                     Yazılım Mühendisi
                   </h1>
-                  <h1 className="text-gray-800 text-sm p-4 text-center">
-                    merhaba özelliklerimin arasında hiçbir şey yok
-                  </h1>
+               
 
                   <div className="flex items-center justify-center mt-3 mb-6 flex-col">
                     <h1 className="text-gray-800 text-sm p-2 font-bold">

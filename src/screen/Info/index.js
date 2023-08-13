@@ -33,10 +33,10 @@ export default function
       <div className='container'>
         <div className='row'>
           <div className='col-xl-7 col-lg-7 content-right-offset margin-bottom-20'>
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex ' }}>
               <img className="p-6" src={resim2} alt="ilan2" />
-              <Link to="/basvuruform" style={{ marginTop: '30px' }}>
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <Link to="/basvuruform"  style={{ marginTop: '30px'  }}>
+                <button className="  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded">
                   Başvur
                 </button>
               </Link>

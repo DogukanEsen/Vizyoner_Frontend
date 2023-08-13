@@ -21,7 +21,7 @@ export default function Index() {
   }
   return (
     <div>
-        <div className="bg-zinc-100  p-2 " >
+          <div className="bg-zinc-100  p-2 " >
       <div className="flex gap-60 items-center h-22 max-w-[1240px] px-2  ">
         <a href="#"><img className="max-w-[250px] "src="https://kurumsal.vizyonergenc.com/img/brand/logo.png" alt="logo" /></a> 
         <a href="#"><img className="h-20" src="https://kurumsal.vizyonergenc.com/img/brand/ssblogo.svg" alt="logo"/></a>
@@ -49,7 +49,7 @@ export default function Index() {
             <a href="#"><p>Şifreni mi unuttun?</p></a>
           </div>
           <div className='flex justify-between text-gray-400 py-2'>
-          <p>Hesabınız yok mu?  <u>Kayıt olun..</u></p>
+          <p>Hesabınız yok mu? <Link to='kurumsalkayit'><u>Kayıt olun..</u></Link> </p>
           </div>
           <Link to={"/kurumsalana/"}>
   <div>
