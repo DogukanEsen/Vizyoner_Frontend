@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import "./Resume.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { UpdateResumeById, getResumeById } from "../services/ResumeService";
 
 const Resume = () => {
   const formikResume = useFormik({
@@ -21,18 +22,8 @@ const Resume = () => {
   });
   const [resume, setResume] = useState([]);
   //Burası ilk çalıştığı zaman userın resume değerlerinin gelmesi için.
-  const fetchApplications = async () => {
-    axios
-      .get(
-        "http://localhost:8080/api/resumes/get/user/" +
-          localStorage.getItem("currentUser"),
-        {
-          headers: {
-            Authorization: localStorage.getItem("tokenKey"), // Değiştirmeniz gereken oturum açma anahtarı (token) veya kimlik doğrulama bilgileri
-            "Content-Type": "application/json",
-          },
-        }
-      )
+  const fetchApplications = () => {
+    getResumeById(localStorage.getItem("currentUser"))
       .then((response) => {
         setResume(response.data); // Assuming the response.data has the resume object properties
         formikResume.setValues({
@@ -48,7 +39,6 @@ const Resume = () => {
           image: null,
         });
       })
-
       .catch((error) => console.log({ error }));
   };
   useEffect(() => {
@@ -73,19 +63,8 @@ const Resume = () => {
     parseQueryParametersToJson();
   }, []);
   //Burası update işlemi için.
-  const fetchChanges = async (formdata) => {
-    axios
-      .put(
-        "http://localhost:8080/api/resumes/update/user/" +
-          localStorage.getItem("currentUser"),
-        formdata,
-        {
-          headers: {
-            Authorization: localStorage.getItem("tokenKey"), // Değiştirmeniz gereken oturum açma anahtarı (token) veya kimlik doğrulama bilgileri
-            "Content-Type": "application/json",
-          },
-        }
-      )
+  const fetchChanges = (formdata) => {
+    UpdateResumeById(localStorage.getItem("currentUser"), formdata)
       .then((response) => {
         setResume(response.data); // Assuming the response.data has the resume object properties
         // formikResume.setValues({

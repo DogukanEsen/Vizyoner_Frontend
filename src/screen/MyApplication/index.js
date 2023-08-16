@@ -7,7 +7,6 @@ import { AiOutlineEnvironment } from "react-icons/ai";
 import { FaCalendarAlt, FaClock } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import axios from "axios";
-import { fetchDataWauth } from "../../services/Axios_Api";
 function App() {
   const [applications, setApplications] = useState([]);
 

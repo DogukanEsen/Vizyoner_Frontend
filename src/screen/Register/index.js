@@ -7,6 +7,8 @@ import "react-slideshow-image/dist/styles.css";
 import { useState } from "react";
 import Validation from "../Register/Validation";
 import axios from "axios";
+import { registerUser } from "../../services/AuthService";
+import { toast } from "react-toastify";
 
 const slideImages = [
   {
@@ -60,54 +62,22 @@ function Index() {
     password: "",
     confirmPassword: "",
   });
-  const [Email, setEmail] = useState({});
-  const [Password, setPassword] = useState({});
-  const [Username, setUsername] = useState({});
-
-  const handleEmail = (value) => {
-    setEmail(value);
-  };
-  const handleUsername = (value) => {
-    setUsername(value);
-  };
-
-  const handlePassword = (value) => {
-    setPassword(value);
-  };
-  const instance = axios.create({
-    baseURL: "http://localhost:8080", // Burada localhost ve 8080, isteğin gönderileceği sunucunun adresi ve portu
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const sendRequest = async (path) => {
-    try {
-      const response = await instance.post(
-        "/auth/" + path,
-        {
-          firstname: Username,
-          lastname: Username,
-          email: Email,
-          password: Password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    } catch (err) {
-      console.log(err);
-    }
+  //AUTH
+  const sendRequest = () => {
+    registerUser({
+      firstname: values.name,
+      lastname: "aaaa",
+      email: values.email,
+      password: values.confirmPassword,
+    })
+      .then((response) => toast("Kayıt başarılı.", { type: "success" }))
+      .catch((err) => toast("Kayıt başarısız.", { type: "error" }));
   };
   const handleRegister = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     if (values.password == values.confirmPassword) sendRequest("register/user");
-    setUsername("");
-    setEmail("");
-    setPassword("");
   };
+  //AUTH
   const [errors, setError] = useState({});
 
   function handleChange(e) {
@@ -153,7 +123,6 @@ function Index() {
                   name="name"
                   onChange={(e) => {
                     handleChange(e);
-                    handleUsername(e.target.value);
                   }}
                 />
                 {errors.name && (
@@ -172,7 +141,6 @@ function Index() {
                 name="email"
                 onChange={(e) => {
                   handleChange(e);
-                  handleEmail(e.target.value);
                 }}
               />
               {errors.email && (
@@ -188,7 +156,6 @@ function Index() {
                 name="password"
                 onChange={(e) => {
                   handleChange(e);
-                  handlePassword(e.target.value);
                 }}
               />
               {errors.password && (
