@@ -101,7 +101,9 @@ function Index() {
     }
   };
   const handleRegister = () => {
-    sendRequest("register/user");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (values.password == values.confirmPassword) sendRequest("register/user");
     setUsername("");
     setEmail("");
     setPassword("");

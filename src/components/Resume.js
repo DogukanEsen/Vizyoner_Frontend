@@ -1,28 +1,114 @@
 import { useFormik } from "formik";
 import "./Resume.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Resume = () => {
-  const formikIdentity = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      tc: "",
-    },
-  });
-
   const formikResume = useFormik({
     initialValues: {
-      aboutme: "",
+      description: "",
       category: "",
       phone: "",
       country: "",
       city: "",
       address: "",
-      gpa: "",
+      gpa: 0,
       grade: "",
       department: "",
       image: null,
+    },
+    // other formik configurations
+  });
+  const [resume, setResume] = useState([]);
+  //Burası ilk çalıştığı zaman userın resume değerlerinin gelmesi için.
+  const fetchApplications = async () => {
+    axios
+      .get(
+        "http://localhost:8080/api/resumes/get/user/" +
+          localStorage.getItem("currentUser"),
+        {
+          headers: {
+            Authorization: localStorage.getItem("tokenKey"), // Değiştirmeniz gereken oturum açma anahtarı (token) veya kimlik doğrulama bilgileri
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        setResume(response.data); // Assuming the response.data has the resume object properties
+        formikResume.setValues({
+          description: response.data.description,
+          category: response.data.category,
+          phone: response.data.phone,
+          country: response.data.country,
+          city: response.data.city,
+          address: response.data.address,
+          gpa: response.data.gpa,
+          grade: response.data.grade,
+          department: response.data.department,
+          image: null,
+        });
+      })
+
+      .catch((error) => console.log({ error }));
+  };
+  useEffect(() => {
+    fetchApplications();
+  }, []);
+  //Burası sayfa yenilendiğinde vb. urldeki parametreleri alıyor ve json'a çeviriyor.
+  useEffect(() => {
+    const parseQueryParametersToJson = () => {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+
+      const formData = {};
+      urlParams.forEach((value, key) => {
+        formData[key] = value;
+      });
+
+      const formDataJSON = JSON.stringify(formData);
+      //Eğer sayfa yeni yüklenmişse (url kısmında sadece /profil varsa) update edilmemesi için.
+      if (Object.keys(formDataJSON).length !== 2) fetchChanges(formDataJSON);
+    };
+
+    parseQueryParametersToJson();
+  }, []);
+  //Burası update işlemi için.
+  const fetchChanges = async (formdata) => {
+    axios
+      .put(
+        "http://localhost:8080/api/resumes/update/user/" +
+          localStorage.getItem("currentUser"),
+        formdata,
+        {
+          headers: {
+            Authorization: localStorage.getItem("tokenKey"), // Değiştirmeniz gereken oturum açma anahtarı (token) veya kimlik doğrulama bilgileri
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        setResume(response.data); // Assuming the response.data has the resume object properties
+        // formikResume.setValues({
+        //   description: response.data.description,
+        //   category: response.data.category,
+        //   phone: response.data.phone,
+        //   country: response.data.country,
+        //   city: response.data.city,
+        //   address: response.data.address,
+        //   gpa: response.data.gpa,
+        //   grade: response.data.grade,
+        //   department: response.data.department,
+        //   image: null,
+        // });
+      })
+
+      .catch((error) => console.log({ error }));
+  };
+  const formikIdentity = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      tc: "",
     },
   });
 
@@ -51,6 +137,9 @@ const Resume = () => {
             value={formik.values[field]}
             onBlur={formik.handleBlur}
             wrap="hard"
+            {...(field === "Kategori"
+              ? formik.getFieldProps("category")
+              : formik.getFieldProps("description"))}
           />
         ) : field === "Vesikalık" ? (
           <div>
@@ -69,6 +158,7 @@ const Resume = () => {
             )}
           </div>
         ) : (
+          //Sağ taraftaki hakkımda, ve kategori dışındakiler burada
           <input
             className={`border-2 border-gray-500 p-2 rounded-md ${
               field === "Hakkımda"
@@ -88,6 +178,13 @@ const Resume = () => {
               field === "E-posta adresi" ||
               field === "T.C. Kimlik Numarası"
             }
+            {...(field === "Telefon" ? formik.getFieldProps("phone") : {})}
+            {...(field === "Ülke" ? formik.getFieldProps("country") : {})}
+            {...(field === "Şehir" ? formik.getFieldProps("city") : {})}
+            {...(field === "Adres" ? formik.getFieldProps("address") : {})}
+            {...(field === "Not ortalaması" ? formik.getFieldProps("gpa") : {})}
+            {...(field === "Sınıf" ? formik.getFieldProps("grade") : {})}
+            {...(field === "Bölüm" ? formik.getFieldProps("department") : {})}
           />
         )}
       </div>
@@ -145,7 +242,7 @@ const Resume = () => {
                 type="submit"
                 className="bg-[#0073b5] font-latoBold text-sm text-white py-3 mt-6 rounded-lg w-full"
               >
-                Submit!
+                Submit2!
               </button>
             </div>
           </div>

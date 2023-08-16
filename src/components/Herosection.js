@@ -65,18 +65,7 @@ export default function Herosection() {
   const handlePassword = (value) => {
     setPassword(value);
   };
-  const sendGetRequestWithAuth = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/user/a", {
-        headers: {
-          Authorization: localStorage.getItem("tokenKey"), // Değiştirmeniz gereken oturum açma anahtarı (token) veya kimlik doğrulama bilgileri
-        },
-      });
-      console.log(response.data); // Sunucudan gelen veriyi konsola yazdırma
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
   const instance = axios.create({
     baseURL: "http://localhost:8080", // Burada localhost ve 8080, isteğin gönderileceği sunucunun adresi ve portu
     headers: {
@@ -85,7 +74,6 @@ export default function Herosection() {
   });
   const sendRequest = async (path) => {
     try {
-      sendGetRequestWithAuth();
       const response = await instance.post(
         "/auth/" + path,
         {
