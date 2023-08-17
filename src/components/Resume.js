@@ -2,7 +2,11 @@ import { useFormik } from "formik";
 import "./Resume.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { UpdateResumeById, getResumeById } from "../services/ResumeService";
+import {
+  UpdateResumeById,
+  createResume,
+  getResumeById,
+} from "../services/ResumeService";
 
 const Resume = () => {
   const formikResume = useFormik({
@@ -39,7 +43,9 @@ const Resume = () => {
           image: null,
         });
       })
-      .catch((error) => console.log({ error }));
+      .catch((error) => {
+        console.log({ error });
+      });
   };
   useEffect(() => {
     fetchApplications();
