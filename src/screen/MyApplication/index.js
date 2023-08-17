@@ -7,9 +7,9 @@ import { AiOutlineEnvironment } from "react-icons/ai";
 import { FaCalendarAlt, FaClock } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import axios from "axios";
-
 function App() {
   const [applications, setApplications] = useState([]);
+
   const fetchApplications = async () => {
     axios
       .get("http://localhost:8080/user/a", {
@@ -18,15 +18,15 @@ function App() {
           "Content-Type": "application/json",
         },
       })
-      .then((res) => res.json)
-      .then((response) => setApplications(response))
-      .catch((error) => console.log({ error }))
-      .then(console.log(applications));
+      .then((response) => setApplications(response.data))
+      .catch((error) => console.log({ error }));
   };
-
   useEffect(() => {
     fetchApplications();
   }, []);
+  useEffect(() => {
+    console.log("applications state güncellendi:", applications);
+  }, [applications]);
   return (
     <div>
       <HeaderMain />

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import Validation from "../screen/Login/Validation";
 import axios from "axios";
+import { loginUser } from "../services/AuthService";
+import { toast } from "react-toastify";
 
 const slideImages = [
   {
@@ -55,60 +57,22 @@ export default function Herosection() {
     password: "",
   });
   //AUTH begins
-  const [Email, setEmail] = useState({});
-  const [Password, setPassword] = useState({});
 
-  const handleEmail = (value) => {
-    setEmail(value);
-  };
-
-  const handlePassword = (value) => {
-    setPassword(value);
-  };
-  const sendGetRequestWithAuth = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/user/a", {
-        headers: {
-          Authorization: localStorage.getItem("tokenKey"), // Değiştirmeniz gereken oturum açma anahtarı (token) veya kimlik doğrulama bilgileri
-        },
-      });
-      console.log(response.data); // Sunucudan gelen veriyi konsola yazdırma
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const instance = axios.create({
-    baseURL: "http://localhost:8080", // Burada localhost ve 8080, isteğin gönderileceği sunucunun adresi ve portu
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const sendRequest = async (path) => {
-    try {
-      sendGetRequestWithAuth();
-      const response = await instance.post(
-        "/auth/" + path,
-        {
-          email: Email,
-          password: Password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      const result = response.data;
-      localStorage.setItem("tokenKey", result.token);
-      localStorage.setItem("currentUser", result.userId);
-      localStorage.setItem("email", Email);
-    } catch (err) {
-      console.log(err);
-    }
+  const sendRequest = () => {
+    loginUser({
+      email: values.email,
+      password: values.password,
+    })
+      .then((response) => {
+        toast("Kayıt başarılı.", { type: "success" });
+        localStorage.setItem("tokenKey", response.data.token);
+        localStorage.setItem("currentUser", response.data.userId);
+      })
+      .catch((err) => toast("Kayıt başarısız.", { type: "error" }));
+    localStorage.setItem("email", values.email);
   };
   const handleLogin = () => {
-    sendRequest("login/user");
+    sendRequest();
   };
   //AUTH ends
   const [errors, setError] = useState({});
@@ -155,7 +119,6 @@ export default function Herosection() {
               name="email"
               onChange={(e) => {
                 handleChange(e);
-                handleEmail(e.target.value);
               }}
             />
             {errors.email && (
@@ -171,7 +134,6 @@ export default function Herosection() {
               name="password"
               onChange={(e) => {
                 handleChange(e);
-                handlePassword(e.target.value);
               }}
             />
             {errors.password && (

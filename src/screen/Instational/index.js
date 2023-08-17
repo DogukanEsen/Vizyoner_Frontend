@@ -3,54 +3,35 @@ import { useState } from "react";
 import Validation from "./Validation";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { loginFirm } from "../../services/AuthService";
+import { toast } from "react-toastify";
 
 export default function Index() {
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
-  const [Email, setEmail] = useState({});
-  const [Password, setPassword] = useState({});
 
-  const handleEmail = (value) => {
-    setEmail(value);
-  };
+  //AUTH begins
 
-  const handlePassword = (value) => {
-    setPassword(value);
-  };
-  const instance = axios.create({
-    baseURL: "http://localhost:8080", // Burada localhost ve 8080, isteğin gönderileceği sunucunun adresi ve portu
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const sendRequest = async (path) => {
-    try {
-      const response = await instance.post(
-        "/auth/" + path,
-        {
-          email: Email,
-          password: Password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      const result = response.data;
-      localStorage.setItem("userToken", result.token);
-      localStorage.setItem("currentUser", result.userId);
-      localStorage.setItem("email", Email);
-    } catch (err) {
-      console.log(err);
-    }
+  const sendRequest = () => {
+    loginFirm({
+      email: values.email,
+      password: values.password,
+    })
+      .then((response) => {
+        toast("Kayıt başarılı.", { type: "success" });
+        localStorage.setItem("tokenKey", response.data.token);
+        localStorage.setItem("currentUser", response.data.userId);
+      })
+      .catch((err) => toast("Kayıt başarısız.", { type: "error" }));
+    localStorage.setItem("email", values.email);
   };
   const handleLogin = () => {
-    sendRequest("login/user");
+    sendRequest();
   };
+
+  //AUTH ends
   const [errors, setError] = useState({});
 
   function handleChange(e) {
@@ -96,7 +77,6 @@ export default function Index() {
                   name="email"
                   onChange={(e) => {
                     handleChange(e);
-                    handleEmail(e.target.value);
                   }}
                 />
                 {errors.email && (
@@ -115,7 +95,6 @@ export default function Index() {
                   name="password"
                   onChange={(e) => {
                     handleChange(e);
-                    handlePassword(e.target.value);
                   }}
                 />
                 {errors.password && (
