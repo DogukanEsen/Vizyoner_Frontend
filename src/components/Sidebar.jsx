@@ -8,30 +8,34 @@ export const Sidebar = () => {
     <Box flex={1} p={2} >
       <Box position="fixed">
        <List>
-          <ListItem disablePadding>
+       <Link to="/kurumsalana"><ListItem disablePadding>
             <ListItemButton component="a" href="#home">
               <ListItemIcon>
                <Home style={{color:'black'}}/>
               </ListItemIcon>
-             <Link to="/kurumsalana"><ListItemText primary="Anasayfa" /></Link>
+             <ListItemText primary="Anasayfa" />
             </ListItemButton>
-          </ListItem>
+          </ListItem></Link>
+
+          <Link to="/firmabilgi">
           <ListItem disablePadding>
             <ListItemButton component="a" href="#company">
               <ListItemIcon>
                 <Apartment style={{color:'red'}}/>
               </ListItemIcon>
-            <Link to="/firmabilgi"><ListItemText primary="Firma Bilgileri" /></Link>
+            <ListItemText primary="Firma Bilgileri" />
             </ListItemButton>
-          </ListItem>
+          </ListItem></Link>
+          <Link to="/ilanolusturma">
           <ListItem disablePadding>
             <ListItemButton component="a" href="#advert">
               <ListItemIcon>
                 <FormatListBulleted style={{color:'blue'}}/>
               </ListItemIcon>
-              <Link to="/ilanolusturma"><ListItemText primary="İlanlar" /></Link>
+             <ListItemText primary="İlanlar" />
             </ListItemButton>
-          </ListItem>
+          </ListItem></Link>
+
           <ListItem disablePadding>
             <ListItemButton component="a" href="#form">
               <ListItemIcon>

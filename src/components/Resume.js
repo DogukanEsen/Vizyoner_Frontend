@@ -91,12 +91,11 @@ const Resume = () => {
   };
   const formikIdentity = useFormik({
     initialValues: {
-      name: "",
+      name: "",  
+      surname: "", 
       email: "",
-      tc: "",
     },
   });
-
   const renderFormFields = (fields, formik) => {
     return fields.map((field) => (
       <div key={field} className="pb-4">
@@ -110,8 +109,47 @@ const Resume = () => {
             ? formik.errors[field]
             : field.charAt(0).toUpperCase() + field.slice(1)}
         </label>
+        {field === "Ad Soyad" ? (
+          <div className="flex">
+            <div className="w-1/2 pr-2">
+              <input
+                className="border-2 border-gray-500 p-2 rounded-md w-full focus:border-teal-500 focus:ring-teal-500"
+                type="text"
+                name="name"
+                placeholder="Ad"
+                onChange={formik.handleChange}
+                value={formik.values.name}
+                onBlur={formik.handleBlur}
+              />
+            </div>
+            <div className="w-1/2 pl-2">
+              <input
+                className="border-2 border-gray-500 p-2 rounded-md w-full focus:border-teal-500 focus:ring-teal-500"
+                type="text"
+                name="surname"
+                placeholder="Soyad"
+                onChange={formik.handleChange}
+                value={formik.values.surname}
+                onBlur={formik.handleBlur}
+              />
+            </div>
+          </div>
+        ) : 
+        field === "E-posta adresi" ? (
+          <input
+            className={`border-2 border-gray-500 p-2 rounded-md w-full focus:border-teal-500 focus:ring-teal-500 ${
+              formik.touched[field] && formik.errors[field] ? "border-red-400" : ""
+            }`}
+            type="email" // Set the input type as "email"
+            name="email"
+            placeholder="E-posta adresi"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            onBlur={formik.handleBlur}
+          />
+        ) :
 
-        {field === "Kategori" || field === "Hakkımda" ? (
+        field === "Kategori" || field === "Hakkımda" ? (
           <textarea
             className="border-2 border-gray-500 p-2 rounded-md w-full h-20 resize-y overflow-y-auto"
             name={field}
@@ -160,8 +198,8 @@ const Resume = () => {
             onBlur={formik.handleBlur}
             disabled={
               field === "Ad Soyad" ||
-              field === "E-posta adresi" ||
-              field === "T.C. Kimlik Numarası"
+              field === "E-posta adresi" 
+              
             }
             {...(field === "Telefon" ? formik.getFieldProps("phone") : {})}
             {...(field === "Ülke" ? formik.getFieldProps("country") : {})}
@@ -187,14 +225,14 @@ const Resume = () => {
             </p>
             <div className="mt-6">
               {renderFormFields(
-                ["Ad Soyad", "E-posta adresi", "T.C. Kimlik Numarası"],
+                ["Ad Soyad", "E-posta adresi"],
                 formikIdentity
               )}
               <button
                 type="submit"
                 className="bg-[#0073b5] font-latoBold text-sm text-white py-3 mt-6 rounded-lg w-full"
               >
-                Submit!
+                Kayıt Ol
               </button>
             </div>
           </div>
@@ -227,7 +265,7 @@ const Resume = () => {
                 type="submit"
                 className="bg-[#0073b5] font-latoBold text-sm text-white py-3 mt-6 rounded-lg w-full"
               >
-                Submit2!
+                Kayıt Ol
               </button>
             </div>
           </div>

@@ -4,14 +4,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Advert = () => {
-
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [updateDate, setUpdateDate] = useState(null);
 
     const formikAdvert = useFormik({
         initialValues: {
-            category: "",
             title: "",
             location: "",
             startDate: null,
@@ -24,7 +22,6 @@ const Advert = () => {
 
     const renderFormFields = (fields, formik) => {
         const fieldDisplayNames = {
-            category: "İlan Türü",
             title: "İlan Başlığı",
             location: "İlan Konumu (Şehir)",
             startDate: "Başlangıç Tarihi",
@@ -45,20 +42,7 @@ const Advert = () => {
                         ? formik.errors[field]
                         : fieldDisplayNames[field]}
                 </label>
-                {field === "category" ? (
-                    <select
-                        className="border-2 border-gray-500 p-2 rounded-md w-full"
-                        name={field}
-                        onChange={formik.handleChange}
-                        value={formik.values[field]}
-                        onBlur={formik.handleBlur}
-                    >
-                        <option value="">Seçiniz</option>
-                        <option value="internship">Staj İlanı</option>
-                        <option value="jobPostings">İş İlanı</option>
-                        <option value="contest">Yarışma</option>
-                    </select>
-                ) : field === "title" ? (
+                {field === "title" ? (
                     <input
                         className="border-2 border-gray-500 p-2 rounded-md w-full focus:border-teal-500 focus:ring-teal-500"
                         type="text"
@@ -142,20 +126,11 @@ const Advert = () => {
             <div className="flex pt-80">
                 <form className="bg-white flex rounded-lg w-[20cm] mx-auto font-latoRegular">
                     <div className="flex-1 text-gray-700 p-20">
-                        <hr />
-                        <hr />
-                        <hr />
-                        <hr />
                         <br />
                         <h1 className="text-3xl pb-2 font-latoBold">Yeni İlan 📣</h1>
                         <br />
-                        <hr />
-                        <hr />
-                        <hr />
-                        <hr />
                         <div className="mt-6">
                             {renderFormFields([
-                                "category",
                                 "title",
                                 "location",
                                 "startDate",
