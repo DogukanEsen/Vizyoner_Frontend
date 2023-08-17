@@ -7,17 +7,12 @@ import { AiOutlineEnvironment } from "react-icons/ai";
 import { FaCalendarAlt, FaClock } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import axios from "axios";
+import { getApplications } from "../../services/ApplicationService";
 function App() {
   const [applications, setApplications] = useState([]);
-
-  const fetchApplications = async () => {
-    axios
-      .get("http://localhost:8080/user/a", {
-        headers: {
-          Authorization: localStorage.getItem("tokenKey"), // Değiştirmeniz gereken oturum açma anahtarı (token) veya kimlik doğrulama bilgileri
-          "Content-Type": "application/json",
-        },
-      })
+  //AUTH
+  const fetchApplications = () => {
+    getApplications(localStorage.getItem("currentUser"))
       .then((response) => setApplications(response.data))
       .catch((error) => console.log({ error }));
   };

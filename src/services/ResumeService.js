@@ -16,3 +16,8 @@ export const UpdateResumeById = (id, body) => {
     headers,
   });
 };
+export const createResume = (id, body) => {
+  return axios.post(ResumeService.createResume.replace("{id}", id), body, {
+    headers,
+  });
+};
