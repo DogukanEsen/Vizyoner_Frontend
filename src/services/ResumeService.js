@@ -11,7 +11,7 @@ export const getResumeById = (id) => {
     headers,
   });
 };
-export const UpdateResumeById = (id, body) => {
+export const putUpdateResumeById = (id, body) => {
   return axios.put(ResumeService.updateResumeById.replace("{id}", id), body, {
     headers,
   });

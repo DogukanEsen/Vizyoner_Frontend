@@ -6,7 +6,9 @@ import {
   UpdateResumeById,
   createResume,
   getResumeById,
+  putUpdateResumeById,
 } from "../services/ResumeService";
+import { getUserDetails, putUpdateUserDetails } from "../services/UserService";
 
 const Resume = () => {
   const formikResume = useFormik({
@@ -24,78 +26,59 @@ const Resume = () => {
     },
     // other formik configurations
   });
+  const formikIdentity = useFormik({
+    initialValues: {
+      firstname: "",
+      lastname: "",
+      email: "",
+    },
+  });
   const [resume, setResume] = useState([]);
+  const [identity, setIdentity] = useState([]);
   //Burası ilk çalıştığı zaman userın resume değerlerinin gelmesi için.
   const fetchApplications = () => {
     getResumeById(localStorage.getItem("currentUser"))
       .then((response) => {
         setResume(response.data); // Assuming the response.data has the resume object properties
-        formikResume.setValues({
-          description: response.data.description,
-          category: response.data.category,
-          phone: response.data.phone,
-          country: response.data.country,
-          city: response.data.city,
-          address: response.data.address,
-          gpa: response.data.gpa,
-          grade: response.data.grade,
-          department: response.data.department,
-          image: null,
-        });
+        formikResume.setValues(response.data);
       })
       .catch((error) => {
         console.log({ error });
       });
   };
-  useEffect(() => {
-    fetchApplications();
-  }, []);
-  //Burası sayfa yenilendiğinde vb. urldeki parametreleri alıyor ve json'a çeviriyor.
-  useEffect(() => {
-    const parseQueryParametersToJson = () => {
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-
-      const formData = {};
-      urlParams.forEach((value, key) => {
-        formData[key] = value;
-      });
-
-      const formDataJSON = JSON.stringify(formData);
-      //Eğer sayfa yeni yüklenmişse (url kısmında sadece /profil varsa) update edilmemesi için.
-      if (Object.keys(formDataJSON).length !== 2) fetchChanges(formDataJSON);
-    };
-
-    parseQueryParametersToJson();
-  }, []);
+  const fetchUserDetails = () => {
+    getUserDetails(localStorage.getItem("currentUser")).then((response) => {
+      setIdentity(response.data);
+      formikIdentity.setValues(response.data);
+    });
+  };
   //Burası update işlemi için.
-  const fetchChanges = (formdata) => {
-    UpdateResumeById(localStorage.getItem("currentUser"), formdata)
+  const UpdateResumeById = () => {
+    putUpdateResumeById(
+      localStorage.getItem("currentUser"),
+      formikResume.values
+    )
       .then((response) => {
         setResume(response.data); // Assuming the response.data has the resume object properties
-        // formikResume.setValues({
-        //   description: response.data.description,
-        //   category: response.data.category,
-        //   phone: response.data.phone,
-        //   country: response.data.country,
-        //   city: response.data.city,
-        //   address: response.data.address,
-        //   gpa: response.data.gpa,
-        //   grade: response.data.grade,
-        //   department: response.data.department,
-        //   image: null,
-        // });
       })
 
       .catch((error) => console.log({ error }));
   };
-  const formikIdentity = useFormik({
-    initialValues: {
-      name: "",  
-      surname: "", 
-      email: "",
-    },
-  });
+  const UpdateUserDetails = () => {
+    putUpdateUserDetails(
+      localStorage.getItem("currentUser"),
+      formikIdentity.values
+    )
+      .then((response) => setIdentity(response.data))
+      .catch((error) => console.log({ error }));
+
+    console.log(formikIdentity.values);
+  };
+  useEffect(() => {
+    fetchApplications();
+    fetchUserDetails();
+  }, []);
+
   const renderFormFields = (fields, formik) => {
     return fields.map((field) => (
       <div key={field} className="pb-4">
@@ -115,10 +98,10 @@ const Resume = () => {
               <input
                 className="border-2 border-gray-500 p-2 rounded-md w-full focus:border-teal-500 focus:ring-teal-500"
                 type="text"
-                name="name"
+                name="firstname"
                 placeholder="Ad"
                 onChange={formik.handleChange}
-                value={formik.values.name}
+                value={formik.values.firstname}
                 onBlur={formik.handleBlur}
               />
             </div>
@@ -126,19 +109,20 @@ const Resume = () => {
               <input
                 className="border-2 border-gray-500 p-2 rounded-md w-full focus:border-teal-500 focus:ring-teal-500"
                 type="text"
-                name="surname"
+                name="lastname"
                 placeholder="Soyad"
                 onChange={formik.handleChange}
-                value={formik.values.surname}
+                value={formik.values.lastname}
                 onBlur={formik.handleBlur}
               />
             </div>
           </div>
-        ) : 
-        field === "E-posta adresi" ? (
+        ) : field === "E-posta adresi" ? (
           <input
             className={`border-2 border-gray-500 p-2 rounded-md w-full focus:border-teal-500 focus:ring-teal-500 ${
-              formik.touched[field] && formik.errors[field] ? "border-red-400" : ""
+              formik.touched[field] && formik.errors[field]
+                ? "border-red-400"
+                : ""
             }`}
             type="email" // Set the input type as "email"
             name="email"
@@ -147,9 +131,7 @@ const Resume = () => {
             value={formik.values.email}
             onBlur={formik.handleBlur}
           />
-        ) :
-
-        field === "Kategori" || field === "Hakkımda" ? (
+        ) : field === "Kategori" || field === "Hakkımda" ? (
           <textarea
             className="border-2 border-gray-500 p-2 rounded-md w-full h-20 resize-y overflow-y-auto"
             name={field}
@@ -196,11 +178,7 @@ const Resume = () => {
             onChange={formik.handleChange}
             value={formik.values[field]}
             onBlur={formik.handleBlur}
-            disabled={
-              field === "Ad Soyad" ||
-              field === "E-posta adresi" 
-              
-            }
+            disabled={field === "Ad Soyad" || field === "E-posta adresi"}
             {...(field === "Telefon" ? formik.getFieldProps("phone") : {})}
             {...(field === "Ülke" ? formik.getFieldProps("country") : {})}
             {...(field === "Şehir" ? formik.getFieldProps("city") : {})}
@@ -224,13 +202,11 @@ const Resume = () => {
               Kimlik bilgilerinizi görüntüleyin
             </p>
             <div className="mt-6">
-              {renderFormFields(
-                ["Ad Soyad", "E-posta adresi"],
-                formikIdentity
-              )}
+              {renderFormFields(["Ad Soyad", "E-posta adresi"], formikIdentity)}
               <button
-                type="submit"
+                type="button"
                 className="bg-[#0073b5] font-latoBold text-sm text-white py-3 mt-6 rounded-lg w-full"
+                onClick={UpdateUserDetails}
               >
                 Kayıt Ol
               </button>
@@ -262,8 +238,9 @@ const Resume = () => {
                 formikResume
               )}
               <button
-                type="submit"
+                type="button"
                 className="bg-[#0073b5] font-latoBold text-sm text-white py-3 mt-6 rounded-lg w-full"
+                onClick={UpdateResumeById}
               >
                 Kayıt Ol
               </button>

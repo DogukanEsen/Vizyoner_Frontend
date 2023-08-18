@@ -11,3 +11,11 @@ export const getResumeById = (body) => {
     headers,
   });
 };
+export const getUserDetails = (id) => {
+  return axios.get(UserService.getUserDetails.replace("{id}", id), { headers });
+};
+export const putUpdateUserDetails = (id, body) => {
+  return axios.put(UserService.putUpdateUserDetails.replace("{id}", id), body, {
+    headers,
+  });
+};

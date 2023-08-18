@@ -15,6 +15,9 @@ export const ProjectService = {};
 export const UserService = {
   Test: process.env.REACT_APP_USER_BACKEND_URL + "/a",
   firmaEkle: process.env.REACT_APP_USER_BACKEND_URL + "/firmaEkle",
+  getUserDetails: process.env.REACT_APP_USER_BACKEND_URL + "/get/{id}",
+  putUpdateUserDetails:
+    process.env.REACT_APP_USER_BACKEND_URL + "/kullaniciGuncelle/{id}",
 };
 export const ResumeService = {
   getResumeById: process.env.REACT_APP_RESUME_BACKEND_URL + "/get/user/{id}",
