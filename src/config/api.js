@@ -9,7 +9,12 @@ export const ApplicationService = {
     process.env.REACT_APP_APPLICATION_BACKEND_URL +
     "/users/{userId}/applications",
 };
-export const CompanyService = {};
+export const CompanyService = {
+  getCompanyById:
+    process.env.REACT_APP_COMPANY_BACKEND_URL + "/get/user/{userid}",
+  updateCompanyById:
+    process.env.REACT_APP_COMPANY_BACKEND_URL + "/update/user/{userid}",
+};
 export const AdvertService = {};
 export const ProjectService = {};
 export const UserService = {

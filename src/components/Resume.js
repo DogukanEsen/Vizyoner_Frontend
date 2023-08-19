@@ -1,13 +1,7 @@
 import { useFormik } from "formik";
 import "./Resume.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import {
-  UpdateResumeById,
-  createResume,
-  getResumeById,
-  putUpdateResumeById,
-} from "../services/ResumeService";
+import { getResumeById, putUpdateResumeById } from "../services/ResumeService";
 import { getUserDetails, putUpdateUserDetails } from "../services/UserService";
 
 const Resume = () => {
@@ -59,7 +53,7 @@ const Resume = () => {
       formikResume.values
     )
       .then((response) => {
-        setResume(response.data); // Assuming the response.data has the resume object properties
+        setResume(response.data);
       })
 
       .catch((error) => console.log({ error }));
