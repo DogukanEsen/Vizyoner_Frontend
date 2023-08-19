@@ -2,6 +2,8 @@ import { useFormik } from "formik";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { postCreateAdvert } from "../services/CompanyService";
+import { toast } from "react-toastify";
 
 const Advert = () => {
   const [startDate, setStartDate] = useState(null);
@@ -20,6 +22,28 @@ const Advert = () => {
       description: "",
     },
   });
+  const deneme = () => {
+    console.log(formikAdvert.values);
+  };
+
+  const CreateAdvert = () => {
+    postCreateAdvert(
+      localStorage.getItem("currentUser"),
+      formikAdvert.values
+    ).catch((error) => console.log(error));
+    // .then(() =>
+    //   toast.success("🦄 Wow so easy!", {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //   })
+    // );
+  };
 
   const renderFormFields = (fields, formik) => {
     const fieldDisplayNames = {
@@ -102,12 +126,14 @@ const Advert = () => {
             onChange={(date) => {
               if (field === "startDate") {
                 setStartDate(date);
+                formik.setFieldValue(field, date);
               } else if (field === "endDate") {
                 setEndDate(date);
+                formik.setFieldValue(field, date);
               } else {
                 setUpdateDate(date);
+                formik.setFieldValue(field, date);
               }
-              formik.handleChange(field)(date);
             }}
             dateFormat="dd/MM/yyyy"
             placeholderText={`${
@@ -179,8 +205,9 @@ const Advert = () => {
                 formikAdvert
               )}
               <button
-                type="submit"
+                type="button"
                 className="bg-[#0073b5] font-latoBold text-sm text-white py-3 mt-6 rounded-lg w-full"
+                onClick={CreateAdvert}
               >
                 İlan Oluştur!
               </button>

@@ -14,6 +14,8 @@ export const CompanyService = {
     process.env.REACT_APP_COMPANY_BACKEND_URL + "/get/user/{userid}",
   updateCompanyById:
     process.env.REACT_APP_COMPANY_BACKEND_URL + "/update/user/{userid}",
+  postCreateAdvert:
+    process.env.REACT_APP_COMPANY_BACKEND_URL + "/ilanac/{userid}",
 };
 export const AdvertService = {};
 export const ProjectService = {};

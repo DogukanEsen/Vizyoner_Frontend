@@ -20,3 +20,10 @@ export const putUpdateCompanyById = (id, body) => {
     }
   );
 };
+export const postCreateAdvert = (id, body) => {
+  return axios.post(
+    CompanyService.postCreateAdvert.replace("{userid}", id),
+    body,
+    { headers }
+  );
+};
