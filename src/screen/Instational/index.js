@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { loginFirm } from "../../services/AuthService";
 import { toast } from "react-toastify";
+import { toastError, toastSuccess } from "../../toasts/Toast";
 
 export default function Index() {
   const [values, setValues] = useState({
@@ -20,11 +21,14 @@ export default function Index() {
       password: values.password,
     })
       .then((response) => {
-        toast("Kayıt başarılı.", { type: "success" });
+        toastSuccess("Kayıt Başarılı");
         localStorage.setItem("tokenKey", response.data.token);
         localStorage.setItem("currentUser", response.data.userId);
       })
-      .catch((err) => toast("Kayıt başarısız.", { type: "error" }));
+      .catch((err) => {
+        toastError(err);
+        console.log(err);
+      });
     localStorage.setItem("email", values.email);
   };
   const handleLogin = () => {

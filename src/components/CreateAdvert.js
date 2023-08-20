@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { postCreateAdvert } from "../services/CompanyService";
 import { toast } from "react-toastify";
-
+import { toastError, toastSuccess } from "../toasts/Toast";
 const Advert = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -22,29 +22,15 @@ const Advert = () => {
       description: "",
     },
   });
-  const deneme = () => {
-    console.log(formikAdvert.values);
-  };
 
   const CreateAdvert = () => {
-    postCreateAdvert(
-      localStorage.getItem("currentUser"),
-      formikAdvert.values
-    ).catch((error) => console.log(error));
-    // .then(() =>
-    //   toast.success("🦄 Wow so easy!", {
-    //     position: "top-right",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "light",
-    //   })
-    // );
+    postCreateAdvert(localStorage.getItem("currentUser"), formikAdvert.values)
+      .then(() => toastSuccess("İlan başarıyla oluşturuldu"))
+      .catch((error) => {
+        console.log(error);
+        toastError(error);
+      });
   };
-
   const renderFormFields = (fields, formik) => {
     const fieldDisplayNames = {
       category: "İlan Türü",

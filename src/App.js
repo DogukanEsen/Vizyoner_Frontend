@@ -1,8 +1,5 @@
-import Router from './Router/router'
-import Resume from './components/Resume'
+import Router from "./Router/router";
+import Resume from "./components/Resume";
 export default function App() {
-  return (
-    <Router/>
-    
-  );
+  return <Router />;
 }

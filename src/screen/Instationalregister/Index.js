@@ -4,23 +4,31 @@ import Validation from "./Validation";
 import axios from "axios";
 import { registerFirm } from "../../services/AuthService";
 import { toast } from "react-toastify";
+import { toastError, toastSuccess } from "../../toasts/Toast";
 
 export default function Index() {
   const [values, setValues] = useState({
+    name: "",
+    surname: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   //AUTH
   const sendRequest = () => {
+    console.log(values.values);
     registerFirm({
       firstname: values.name,
-      lastname: "aaaa",
+      lastname: values.surname,
       email: values.email,
       password: values.confirmPassword,
     })
-      .then((response) => toast("Kayıt başarılı.", { type: "success" }))
-      .catch((err) => toast("Kayıt başarısız.", { type: "error" }));
+      .then((response) => toastSuccess("Kayıt Başarılı"))
+      .catch((err) => {
+        toastError(err);
+        console.log(err);
+      });
   };
   const handleRegister = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -67,12 +75,31 @@ export default function Index() {
             </h2>
             <div className="flex flex-col sm:flex-row justify-between text-gray-400 py-3">
               <div className="flex flex-col w-full sm:pr-2">
-                <label className="font-bold">Ad - Soyad</label>
+                <label className="font-bold">Ad</label>
                 <input
                   className="rounded-lg text-gray-400 mt-2 p-2 "
                   type="text"
                   value={values.name}
                   name="name"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                />
+                {errors.name && (
+                  <p style={{ color: "red", fontSize: "18px" }}>
+                    {errors.name}
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row justify-between text-gray-400 py-3">
+              <div className="flex flex-col w-full sm:pr-2">
+                <label className="font-bold">Soyad</label>
+                <input
+                  className="rounded-lg text-gray-400 mt-2 p-2 "
+                  type="text"
+                  value={values.surname}
+                  name="surname"
                   onChange={(e) => {
                     handleChange(e);
                   }}
@@ -148,5 +175,5 @@ export default function Index() {
         </div>
       </div>
     </div>
-  )
-              }
+  );
+}

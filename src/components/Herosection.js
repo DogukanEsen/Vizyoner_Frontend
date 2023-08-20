@@ -6,6 +6,7 @@ import Validation from "../screen/Login/Validation";
 import axios from "axios";
 import { loginUser } from "../services/AuthService";
 import { toast } from "react-toastify";
+import { toastError, toastSuccess } from "../toasts/Toast";
 
 const slideImages = [
   {
@@ -64,11 +65,14 @@ export default function Herosection() {
       password: values.password,
     })
       .then((response) => {
-        toast("Kayıt başarılı.", { type: "success" });
+        toastSuccess("Kayıt başarılı.");
         localStorage.setItem("tokenKey", response.data.token);
         localStorage.setItem("currentUser", response.data.userId);
       })
-      .catch((err) => toast("Kayıt başarısız.", { type: "error" }));
+      .catch((err) => {
+        toastError(err);
+        console.log(err);
+      });
     localStorage.setItem("email", values.email);
   };
   const handleLogin = () => {
