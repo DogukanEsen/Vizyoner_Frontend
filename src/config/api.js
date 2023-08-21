@@ -3,6 +3,9 @@ export const AuthService = {
   loginFirm: process.env.REACT_APP_AUTH_BACKEND_URL + "/login/firm",
   registerUser: process.env.REACT_APP_AUTH_BACKEND_URL + "/register/user",
   registerFirm: process.env.REACT_APP_AUTH_BACKEND_URL + "/register/firm",
+  isUser: process.env.REACT_APP_AUTH_BACKEND_URL + "/isuser/{jwt}",
+  isAdmin: process.env.REACT_APP_AUTH_BACKEND_URL + "/isadmin/{jwt}",
+  isAuth: process.env.REACT_APP_AUTH_BACKEND_URL + "/isauth/{jwt}",
 };
 export const ApplicationService = {
   getApplications:

@@ -27,26 +27,6 @@ function App() {
   //   }
   // };
 
-  const instance = axios.create({
-    baseURL: "http://localhost:8080/users/a", // Burada localhost ve 8080, isteğin gönderileceği sunucunun adresi ve portu
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("tokenKey"),
-    },
-  });
-  const sendRequest = async (path) => {
-    try {
-      const response = await instance.get();
-
-      const result = response.data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  useEffect(() => {
-    sendRequest();
-  }, []);
-
   return (
     <div className="container">
       <div className="row">
@@ -67,7 +47,6 @@ function App() {
                   <h1 className="text-gray-800 text-sm p-1">
                     Yazılım Mühendisi
                   </h1>
-               
 
                   <div className="flex items-center justify-center mt-3 mb-6 flex-col">
                     <h1 className="text-gray-800 text-sm p-2 font-bold">
