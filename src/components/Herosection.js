@@ -65,7 +65,7 @@ export default function Herosection() {
       password: values.password,
     })
       .then((response) => {
-        toastSuccess("Kayıt başarılı.");
+        toastSuccess("Giriş başarılı.");
         localStorage.setItem("tokenKey", response.data.token);
         localStorage.setItem("currentUser", response.data.userId);
       })

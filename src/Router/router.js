@@ -38,15 +38,15 @@ export default function App() {
           path="/kurumsal/kurumsalkayit"
           element={<Instationalregister />}
         />
-        <Route path="/ilanlar1" element={<Advert />} />
+        <Route path="/ilanlar" element={<Advert />} />
         <Route path="/firmalar" element={<Companies />} />
         <Route path="/firmabilgi" element={<CompInfo />} />
-        <Route path="/ilanlar" element={<Info />} />
+        <Route path="/ilan/:id" element={<Info />} />
         <Route path="/anasayfa" element={<Home />} />
         <Route path="/profil" element={<Profile />} />
         <Route path="/ilan-eslesmelerim" element={<Matchup />} />
         <Route path="/basvurular" element={<MyApplication />} />
-        <Route path="/basvuruform" element={<Application />} />
+        <Route path="/basvuruform/:id" element={<Application />} />
         <Route path="/ilanolusturma" element={<CreateAdvert />} />
         <Route path="/kurumsalana" element={<InstationalMain />} />
         {/* 

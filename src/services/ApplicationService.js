@@ -14,3 +14,13 @@ export const getApplications = (userId) => {
     }
   );
 };
+
+export const postCreateApplication = (userid, advertid, body) => {
+  return axios.post(
+    ApplicationService.postCreateApplication
+      .replace("{userId}", userid)
+      .replace("{advertId}", advertid),
+    body,
+    { headers }
+  );
+};

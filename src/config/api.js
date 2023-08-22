@@ -11,6 +11,9 @@ export const ApplicationService = {
   getApplications:
     process.env.REACT_APP_APPLICATION_BACKEND_URL +
     "/users/{userId}/applications",
+  postCreateApplication:
+    process.env.REACT_APP_APPLICATION_BACKEND_URL +
+    "/users/{userId}/adverts/{advertId}/applications",
 };
 export const CompanyService = {
   getCompanyById:
@@ -20,7 +23,9 @@ export const CompanyService = {
   postCreateAdvert:
     process.env.REACT_APP_COMPANY_BACKEND_URL + "/ilanac/{userid}",
 };
-export const AdvertService = {};
+export const AdvertService = {
+  getAllAdverts: process.env.REACT_APP_ADVERT_BACKEND_URL + "/getAllAdverts",
+};
 export const ProjectService = {};
 export const UserService = {
   Test: process.env.REACT_APP_USER_BACKEND_URL + "/a",
