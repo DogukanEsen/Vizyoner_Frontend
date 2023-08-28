@@ -1,27 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Navigate, Outlet } from "react-router-dom";
-import { isAdmin, isAuth, isUser } from "../services/AuthService";
+import { AisUser, isAdmin, isAuth, isUser } from "../services/AuthService";
 
 const IsUser = () => {
-  return isUser(localStorage.getItem("tokenKey"));
+  return AisUser();
 };
 const IsAdmin = () => {
-  return isAdmin(localStorage.getItem("tokenKey"));
+  isAdmin(localStorage.getItem("tokenKey")).then((res) => {
+    debugger;
+    return res.data;
+  });
 };
 const IsAuth = () => {
   isAuth(localStorage.getItem("tokenKey")).then((res) => {
+    debugger;
     return res.data;
   });
 };
 export const UserRoute = () => {
-  const deneme = isUser();
-  debugger;
+  console.log(IsUser());
   return IsUser() ? <Outlet /> : <Navigate to="/" />;
 };
 export const AdminRoute = () => {
-  const deneme = IsAdmin();
-  debugger;
-  return IsAdmin() ? <Outlet /> : <Navigate to="/" />;
+  return IsAdmin() ? <Outlet /> : <Navigate to="/kurumsal" />;
 };
 export const AuthRoute = () => {
   return IsAuth() ? <Outlet /> : <Navigate to="/" />;

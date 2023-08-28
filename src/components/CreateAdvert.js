@@ -14,6 +14,7 @@ const Advert = () => {
     initialValues: {
       category: "",
       title: "",
+      advertCategory: "",
       location: "",
       startDate: null,
       endDate: null,
@@ -35,6 +36,7 @@ const Advert = () => {
     const fieldDisplayNames = {
       category: "İlan Türü",
       title: "İlan Başlığı",
+      advertCategory: "Aranan pozisyon ve özellikler",
       location: "İlan Konumu (Şehir)",
       startDate: "Başlangıç Tarihi",
       endDate: "Bitiş Tarihi",
@@ -69,6 +71,16 @@ const Advert = () => {
             <option value="contest">Yarışma</option>
           </select>
         ) : field === "title" ? (
+          <input
+            className="border-2 border-gray-500 p-2 rounded-md w-full focus:border-teal-500 focus:ring-teal-500"
+            type="text"
+            name={field}
+            placeholder={`${fieldDisplayNames[field]} girin`}
+            onChange={formik.handleChange}
+            value={formik.values[field]}
+            onBlur={formik.handleBlur}
+          />
+        ) : field === "advertCategory" ? (
           <input
             className="border-2 border-gray-500 p-2 rounded-md w-full focus:border-teal-500 focus:ring-teal-500"
             type="text"
@@ -181,6 +193,7 @@ const Advert = () => {
                 [
                   "category",
                   "title",
+                  "advertCategory",
                   "location",
                   "startDate",
                   "endDate",

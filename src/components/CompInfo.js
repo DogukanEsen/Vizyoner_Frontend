@@ -29,6 +29,7 @@ const Comp = () => {
       });
   };
   const updateCompanies = () => {
+    console.log(formikComp.values);
     putUpdateCompanyById(localStorage.getItem("currentUser"), formikComp.values)
       .then((response) => {
         setCompany(response.data);

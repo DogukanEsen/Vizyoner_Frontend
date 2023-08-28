@@ -1,5 +1,6 @@
 import axios from "axios";
 import { AuthService } from "../config/api";
+import { useState } from "react";
 
 const headers = {
   "Content-Type": "application/json",
@@ -17,16 +18,20 @@ export const loginUser = (body) => {
 export const loginFirm = (body) => {
   return axios.post(AuthService.loginFirm, body, { headers });
 };
-export const isUser = (jwt) => {
-  if (jwt === "null" || !jwt) return false;
-  return axios
+export const AisUser = () => {
+  const [resume, setResume] = useState([]);
+  const jwt = localStorage.getItem("tokenKey");
+  axios
     .get(AuthService.isUser.replace("{jwt}", jwt), { headers })
     .then((res) => {
-      return res.data;
+      console.log("Data: " + res.data);
+      setResume(res.data);
     })
     .catch((err) => {
-      return false;
+      console.log("Error: " + err);
+      setResume(false);
     });
+  return resume.values;
 };
 export const isAdmin = (jwt) => {
   if (jwt === "null" || !jwt) return false;

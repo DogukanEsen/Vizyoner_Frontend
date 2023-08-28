@@ -10,22 +10,21 @@ import { FaCalendarAlt, FaClock } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 
 function App() {
-
   const [companiesData, setCompanies] = useState([]);
 
   const fetchCompanies = async () => {
-      try {
-          const response = await axios.get(
-          "http://localhost:8080/company/listeleme"
-          );
-          setCompanies(response.data);
-      } catch (err) {
-          console.log(err);
-      }
+    try {
+      const response = await axios.get(
+        "http://localhost:8080/company/listeleme"
+      );
+      setCompanies(response.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
-      fetchCompanies();
+    fetchCompanies();
   }, []);
 
   return (
@@ -83,8 +82,8 @@ function App() {
 
         {/* Middle content column */}
         <Col xs={7} className="content-column ">
-          <h1 className="dark:text-white font-bold text-xl p-4 text-center">
-           SİZE UYGUN İLAN EŞLEŞMELERİ
+          <h1 className="dark:text-black font-bold font-roboto text-4xl p-2 text-center">
+            SİZE UYGUN İLAN EŞLEŞMELERİ
           </h1>
           <div className="grid grid-cols-1 gap-1 p-8 ">
             <div className="bg-white w-full h-45 rounded-lg border-2  shadow-lg  hover:shadow-teal-500">
@@ -114,8 +113,7 @@ function App() {
                   <p className="text-s"></p>
                 </div>
               </div>
-              <div className="bg-white  w-full h-45 border-2">
-              </div>
+              <div className="bg-white  w-full h-45 border-2"></div>
             </div>
           </div>
         </Col>

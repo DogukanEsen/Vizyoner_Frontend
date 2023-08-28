@@ -91,7 +91,7 @@ const Application = () => {
             <hr />
             <hr />
             <hr />
-            <Link to={"/ilanlar"}>
+            <>
               <div className="mt-6">
                 {renderFormFields(["content", "file"], formikApplication)}
                 <button
@@ -102,7 +102,7 @@ const Application = () => {
                   Başvur!
                 </button>
               </div>
-            </Link>
+            </>
           </div>
         </form>
       </div>

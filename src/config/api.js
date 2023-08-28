@@ -25,6 +25,8 @@ export const CompanyService = {
 };
 export const AdvertService = {
   getAllAdverts: process.env.REACT_APP_ADVERT_BACKEND_URL + "/getAllAdverts",
+  getAdvertById:
+    process.env.REACT_APP_ADVERT_BACKEND_URL + "/getAdvertByID/{id}",
 };
 export const ProjectService = {};
 export const UserService = {

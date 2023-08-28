@@ -8,3 +8,8 @@ const headers = {
 export const getAllAdverts = () => {
   return axios.get(AdvertService.getAllAdverts, { headers });
 };
+export const getAdvertByID = (id) => {
+  return axios.get(AdvertService.getAdvertById.replace("{id}", id), {
+    headers,
+  });
+};

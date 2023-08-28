@@ -72,7 +72,7 @@ const Header = () => {
           <ul className="flex -ml-10">
             {[
               { icon: AiOutlineHome, label: "Anasayfa", link: "/anasayfa" },
-              { icon: PiBagSimple, label: "İlanlar", link: "/ilanlar1" },
+              { icon: PiBagSimple, label: "İlanlar", link: "/ilanlar" },
               {
                 icon: AiOutlineUnorderedList,
                 label: "Firmalar",
