@@ -49,7 +49,6 @@ export default function App() {
         <Route path="/basvuruform/:id" element={<Application />} />
         <Route path="/ilanolusturma" element={<CreateAdvert />} />
         <Route path="/kurumsalana" element={<InstationalMain />} />
-
         {/* Burada Raole göre giriş yerleri var çalışmıyor ama çok saçma. routeby' da admin'e undefined geliyor ama true false dönüyor. saçma. */}
         {/* <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -62,7 +61,7 @@ export default function App() {
         <Route path="/firmalar" element={<Companies />} />
         <Route path="/firmabilgi" element={<CompInfo />} />
         <Route path="/ilanlar" element={<Info />} />
-        User Gerekenler 
+        User Gerekenler
         <Route path="/anasayfa" element={<UserRoute />}>
           <Route path="/anasayfa" element={<Home />} />
         </Route>
@@ -84,7 +83,7 @@ export default function App() {
         </Route>
         <Route path="/kurumsalana" element={<AdminRoute />}>
           <Route path="/kurumsalana" element={<InstationalMain />} />
-        </Route>*/}
+        </Route> */}
       </Routes>
     </BrowserRouter>
   );

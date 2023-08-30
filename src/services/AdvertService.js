@@ -13,3 +13,8 @@ export const getAdvertByID = (id) => {
     headers,
   });
 };
+export const getAiAdverts = (jwt) => {
+  return axios.get(AdvertService.getAiAdverts.replace("{jwt},jwt"), {
+    headers,
+  });
+};

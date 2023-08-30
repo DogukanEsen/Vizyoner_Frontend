@@ -6,19 +6,16 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-export const getApplications = (userId) => {
-  return axios.get(
-    ApplicationService.getApplications.replace("{userId}", userId),
-    {
-      headers,
-    }
-  );
+export const getApplications = (jwt) => {
+  return axios.get(ApplicationService.getApplications.replace("{jwt}", jwt), {
+    headers,
+  });
 };
 
-export const postCreateApplication = (userid, advertid, body) => {
+export const postCreateApplication = (jwt, advertid, body) => {
   return axios.post(
     ApplicationService.postCreateApplication
-      .replace("{userId}", userid)
+      .replace("{jwt}", jwt)
       .replace("{advertId}", advertid),
     body,
     { headers }

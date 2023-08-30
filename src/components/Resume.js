@@ -31,7 +31,7 @@ const Resume = () => {
   const [identity, setIdentity] = useState([]);
   //Burası ilk çalıştığı zaman userın resume değerlerinin gelmesi için.
   const fetchApplications = () => {
-    getResumeById(localStorage.getItem("currentUser"))
+    getResumeById(localStorage.getItem("tokenKey"))
       .then((response) => {
         setResume(response.data); // Assuming the response.data has the resume object properties
         formikResume.setValues(response.data);
@@ -41,17 +41,14 @@ const Resume = () => {
       });
   };
   const fetchUserDetails = () => {
-    getUserDetails(localStorage.getItem("currentUser")).then((response) => {
+    getUserDetails(localStorage.getItem("tokenKey")).then((response) => {
       setIdentity(response.data);
       formikIdentity.setValues(response.data);
     });
   };
   //Burası update işlemi için.
   const UpdateResumeById = () => {
-    putUpdateResumeById(
-      localStorage.getItem("currentUser"),
-      formikResume.values
-    )
+    putUpdateResumeById(localStorage.getItem("tokenKey"), formikResume.values)
       .then((response) => {
         setResume(response.data);
       })
@@ -60,7 +57,7 @@ const Resume = () => {
   };
   const UpdateUserDetails = () => {
     putUpdateUserDetails(
-      localStorage.getItem("currentUser"),
+      localStorage.getItem("tokenKey"),
       formikIdentity.values
     )
       .then((response) => setIdentity(response.data))

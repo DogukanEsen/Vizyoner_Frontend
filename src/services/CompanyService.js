@@ -6,23 +6,23 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-export const getCompanyById = (id) => {
-  return axios.get(CompanyService.getCompanyById.replace("{userid}", id), {
+export const getCompanyById = (jwt) => {
+  return axios.get(CompanyService.getCompanyById.replace("{jwt}", jwt), {
     headers,
   });
 };
-export const putUpdateCompanyById = (id, body) => {
+export const putUpdateCompanyById = (jwt, body) => {
   return axios.put(
-    CompanyService.updateCompanyById.replace("{userid}", id),
+    CompanyService.updateCompanyById.replace("{jwt}", jwt),
     body,
     {
       headers,
     }
   );
 };
-export const postCreateAdvert = (id, body) => {
+export const postCreateAdvert = (jwt, body) => {
   return axios.post(
-    CompanyService.postCreateAdvert.replace("{userid}", id),
+    CompanyService.postCreateAdvert.replace("{jwt}", jwt),
     body,
     { headers }
   );

@@ -14,7 +14,7 @@ const Application = () => {
   const { id } = useParams();
   const CreateApplication = () => {
     postCreateApplication(
-      localStorage.getItem("currentUser"),
+      localStorage.getItem("tokenKey"),
       id,
       formikApplication.values
     )

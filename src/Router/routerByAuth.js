@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Route, Navigate, Outlet } from "react-router-dom";
 import { AisUser, isAdmin, isAuth, isUser } from "../services/AuthService";
 
-const IsUser = () => {
-  return AisUser();
+const IsUser = async () => {
+  AisUser().then((res) => {
+    return res.data;
+  });
 };
 const IsAdmin = () => {
   isAdmin(localStorage.getItem("tokenKey")).then((res) => {
@@ -18,8 +20,13 @@ const IsAuth = () => {
   });
 };
 export const UserRoute = () => {
-  console.log(IsUser());
-  return IsUser() ? <Outlet /> : <Navigate to="/" />;
+  const [isUser, setIsUser] = useState();
+
+  IsUser().then((res) => {
+    setIsUser(res);
+  });
+  console.log(isUser);
+  return isUser ? <Outlet /> : <Navigate to="/" />;
 };
 export const AdminRoute = () => {
   return IsAdmin() ? <Outlet /> : <Navigate to="/kurumsal" />;

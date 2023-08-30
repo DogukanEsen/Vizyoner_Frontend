@@ -19,7 +19,7 @@ const Comp = () => {
   });
   const [company, setCompany] = useState([]);
   const fetchCompanies = () => {
-    getCompanyById(localStorage.getItem("currentUser"))
+    getCompanyById(localStorage.getItem("tokenKey"))
       .then((response) => {
         setCompany(response.data);
         formikComp.setValues(response.data);
@@ -30,7 +30,7 @@ const Comp = () => {
   };
   const updateCompanies = () => {
     console.log(formikComp.values);
-    putUpdateCompanyById(localStorage.getItem("currentUser"), formikComp.values)
+    putUpdateCompanyById(localStorage.getItem("tokenKey"), formikComp.values)
       .then((response) => {
         setCompany(response.data);
       })

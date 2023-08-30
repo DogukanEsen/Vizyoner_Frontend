@@ -6,16 +6,17 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-export const getResumeById = (body) => {
-  return axios.get(UserService.firmaEkle, body, {
+export const getUserDetails = (jwt) => {
+  return axios.get(UserService.getUserDetails.replace("{jwt}", jwt), {
     headers,
   });
 };
-export const getUserDetails = (id) => {
-  return axios.get(UserService.getUserDetails.replace("{id}", id), { headers });
-};
-export const putUpdateUserDetails = (id, body) => {
-  return axios.put(UserService.putUpdateUserDetails.replace("{id}", id), body, {
-    headers,
-  });
+export const putUpdateUserDetails = (jwt, body) => {
+  return axios.put(
+    UserService.putUpdateUserDetails.replace("{jwt}", jwt),
+    body,
+    {
+      headers,
+    }
+  );
 };

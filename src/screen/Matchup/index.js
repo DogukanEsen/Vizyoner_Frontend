@@ -8,23 +8,19 @@ import Footer from "../../components/Footer";
 import { AiOutlineEnvironment } from "react-icons/ai";
 import { FaCalendarAlt, FaClock } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+import { getAiAdverts } from "../../services/AdvertService";
 
 function App() {
-  const [companiesData, setCompanies] = useState([]);
+  const [advertData, setAdvert] = useState([]);
 
-  const fetchCompanies = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:8080/company/listeleme"
-      );
-      setCompanies(response.data);
-    } catch (err) {
-      console.log(err);
-    }
+  const getAdverts = () => {
+    getAiAdverts(localStorage.getItem("tokenKey")).then((res) => {
+      setAdvert(res.data);
+    });
   };
 
   useEffect(() => {
-    fetchCompanies();
+    getAdverts();
   }, []);
 
   return (

@@ -6,18 +6,13 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-export const getResumeById = (id) => {
-  return axios.get(ResumeService.getResumeById.replace("{id}", id), {
+export const getResumeById = (jwt) => {
+  return axios.get(ResumeService.getResumeById.replace("{jwt}", jwt), {
     headers,
   });
 };
-export const putUpdateResumeById = (id, body) => {
-  return axios.put(ResumeService.updateResumeById.replace("{id}", id), body, {
-    headers,
-  });
-};
-export const createResume = (id, body) => {
-  return axios.post(ResumeService.createResume.replace("{id}", id), body, {
+export const putUpdateResumeById = (jwt, body) => {
+  return axios.put(ResumeService.updateResumeById.replace("{jwt}", jwt), body, {
     headers,
   });
 };

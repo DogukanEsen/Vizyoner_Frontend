@@ -14,7 +14,7 @@ function App() {
 
   //AUTH
   const fetchApplications = () => {
-    getApplications(localStorage.getItem("currentUser"))
+    getApplications(localStorage.getItem("tokenKey"))
       .then((response) => {
         setApplications(response.data);
       })
