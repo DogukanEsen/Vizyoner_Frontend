@@ -3,6 +3,7 @@ import "./Resume.css";
 import { useEffect, useState } from "react";
 import { getResumeById, putUpdateResumeById } from "../services/ResumeService";
 import { getUserDetails, putUpdateUserDetails } from "../services/UserService";
+import { toastError, toastSuccess } from "../toasts/Toast";
 
 const Resume = () => {
   const formikResume = useFormik({
@@ -35,33 +36,51 @@ const Resume = () => {
       .then((response) => {
         setResume(response.data); // Assuming the response.data has the resume object properties
         formikResume.setValues(response.data);
+        toastSuccess(" Bilgiler başarıyla getirildi..");
       })
       .catch((error) => {
         console.log({ error });
+        toastError("Bilgiler getirelemedi.." + error);
       });
   };
   const fetchUserDetails = () => {
-    getUserDetails(localStorage.getItem("tokenKey")).then((response) => {
-      setIdentity(response.data);
-      formikIdentity.setValues(response.data);
-    });
+    getUserDetails(localStorage.getItem("tokenKey"))
+      .then((response) => {
+        setIdentity(response.data);
+        formikIdentity.setValues(response.data);
+        toastSuccess(" Bilgiler başarıyla getirildi..");
+      })
+      .catch((err) => {
+        console.log({ err });
+        toastError("Bilgiler getirelemedi.." + err);
+      });
   };
   //Burası update işlemi için.
   const UpdateResumeById = () => {
     putUpdateResumeById(localStorage.getItem("tokenKey"), formikResume.values)
       .then((response) => {
         setResume(response.data);
+        toastSuccess("Güncelleme başarılı..");
       })
 
-      .catch((error) => console.log({ error }));
+      .catch((error) => {
+        console.log({ error });
+        toastError("Güncelleme hatası.." + error);
+      });
   };
   const UpdateUserDetails = () => {
     putUpdateUserDetails(
       localStorage.getItem("tokenKey"),
       formikIdentity.values
     )
-      .then((response) => setIdentity(response.data))
-      .catch((error) => console.log({ error }));
+      .then((response) => {
+        setIdentity(response.data);
+        toastSuccess("Güncelleme başarılı..");
+      })
+      .catch((error) => {
+        console.log({ error });
+        toastError("Güncelleme hatası.." + error);
+      });
 
     console.log(formikIdentity.values);
   };

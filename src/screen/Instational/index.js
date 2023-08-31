@@ -21,7 +21,6 @@ export default function Index() {
       password: values.password,
     })
       .then((response) => {
-        toastSuccess("Kayıt Başarılı");
         localStorage.setItem("tokenKey", response.data.token);
         localStorage.setItem("currentUser", response.data.userId);
       })
@@ -30,6 +29,9 @@ export default function Index() {
         console.log(err);
       });
     localStorage.setItem("email", values.email);
+    if (localStorage.getItem("tokenKey") == "null")
+      toastError("Yanlış giriş bilgileri");
+    else toastSuccess("Giriş başarılı.");
   };
   const handleLogin = () => {
     sendRequest();

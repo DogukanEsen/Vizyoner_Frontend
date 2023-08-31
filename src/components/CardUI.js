@@ -13,20 +13,30 @@ import ReactDOM from "react-dom";
 import { Grid, Row, Col } from "react-flexbox-grid";
 import "./styles.css";
 import { Link } from "react-router-dom";
+import { getUserDetails } from "../services/UserService";
+import { getResumeById } from "../services/ResumeService";
 
 function App() {
-  // const [adverts, setAdverts] = useState([]); // useState fonksiyonunu düzgün bir şekilde kullanın
-  // const fetchAdverts = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       " http://localhost:8080/api/adverts/getAllAdverts"
-  //     );
-  //     setAdverts(response.data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
+  const [resume, setResume] = useState([]);
+  const [identity, setIdentity] = useState([]);
+  const fetchApplications = () => {
+    getResumeById(localStorage.getItem("tokenKey"))
+      .then((response) => {
+        setResume(response.data); // Assuming the response.data has the resume object properties
+      })
+      .catch((error) => {
+        console.log({ error });
+      });
+  };
+  const fetchUserDetails = () => {
+    getUserDetails(localStorage.getItem("tokenKey")).then((response) => {
+      setIdentity(response.data);
+    });
+  };
+  useEffect(() => {
+    fetchApplications();
+    fetchUserDetails();
+  }, []);
   return (
     <div className="container">
       <div className="row">
@@ -41,11 +51,13 @@ function App() {
                     src="https://media.licdn.com/dms/image/D4D03AQGMTN0aBCU1Qg/profile-displayphoto-shrink_800_800/0/1689426716772?e=1695859200&v=beta&t=p7QsEIXLp6ZoJ8sxTE-KUkHOdR9hH_nXLMwmJ85o-Z8"
                   />
                   <h1 className="text-gray-800 font-semibold text-xl mt-5">
-                    Saliha Yıldırım
+                    {identity.firstname} {identity.lastname}
                   </h1>
-                  <h1 className="text-gray-800 text-sm p-1 ">Elazığ,Türkiye</h1>
+                  <h1 className="text-gray-800 text-sm p-1 ">
+                    {resume.city}, {resume.country}
+                  </h1>
                   <h1 className="text-gray-800 text-sm p-1">
-                    Yazılım Mühendisi
+                    {resume.category}
                   </h1>
 
                   <div className="flex items-center justify-center mt-3 mb-6 flex-col">

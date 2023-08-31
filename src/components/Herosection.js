@@ -65,7 +65,6 @@ export default function Herosection() {
       password: values.password,
     })
       .then((response) => {
-        toastSuccess("Giriş başarılı.");
         localStorage.setItem("tokenKey", response.data.token);
         localStorage.setItem("currentUser", response.data.userId);
       })
@@ -73,6 +72,10 @@ export default function Herosection() {
         toastError(err);
         console.log(err);
       });
+    if (localStorage.getItem("tokenKey") == "null")
+      toastError("Yanlış giriş bilgileri");
+    else toastSuccess("Giriş başarılı.");
+
     localStorage.setItem("email", values.email);
   };
   const handleLogin = () => {
@@ -164,13 +167,15 @@ export default function Herosection() {
             </p>
           </div>
           <div>
-            <button
-              className="w-full my-5 py-2 bg-green-500 shadow-lg hover:shadow-teal-500/60 font-semibold rounded-lg"
-              type="submit"
-              onClick={() => handleLogin()}
-            >
-              Oturum Aç
-            </button>
+            <Link to={"/anasayfa"}>
+              <button
+                className="w-full my-5 py-2 bg-green-500 shadow-lg hover:shadow-teal-500/60 font-semibold rounded-lg"
+                type="submit"
+                onClick={() => handleLogin()}
+              >
+                Oturum Aç
+              </button>
+            </Link>
           </div>
         </form>
       </div>
