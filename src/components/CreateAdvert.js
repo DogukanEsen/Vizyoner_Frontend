@@ -34,9 +34,9 @@ const Advert = () => {
   };
   const renderFormFields = (fields, formik) => {
     const fieldDisplayNames = {
-      category: "İlan Türü",
+      category: "Aranan pozisyon ve özellikler",
       title: "İlan Başlığı",
-      advertCategory: "Aranan pozisyon ve özellikler",
+      advertCategory: "İlan Türü",
       location: "İlan Konumu (Şehir)",
       startDate: "Başlangıç Tarihi",
       endDate: "Bitiş Tarihi",
@@ -57,7 +57,7 @@ const Advert = () => {
             ? formik.errors[field]
             : fieldDisplayNames[field]}
         </label>
-        {field === "category" ? (
+        {field === "advertCategory" ? (
           <select
             className="border-2 border-gray-500 p-2 rounded-md w-full"
             name={field}
@@ -80,7 +80,7 @@ const Advert = () => {
             value={formik.values[field]}
             onBlur={formik.handleBlur}
           />
-        ) : field === "advertCategory" ? (
+        ) : field === "category" ? (
           <input
             className="border-2 border-gray-500 p-2 rounded-md w-full focus:border-teal-500 focus:ring-teal-500"
             type="text"

@@ -18,6 +18,7 @@ import {
   BrowserRouter,
   Link,
   Navigate,
+  Outlet,
   Route,
   Routes,
   useNavigate,
@@ -25,6 +26,8 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AdminRoute, AuthRoute, UserRoute } from "./routerByAuth";
+import { AisUser } from "../services/AuthService";
+import { useState } from "react";
 
 export default function App() {
   return (

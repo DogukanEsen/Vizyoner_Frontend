@@ -28,7 +28,7 @@ export const AdvertService = {
   getAdvertById:
     process.env.REACT_APP_ADVERT_BACKEND_URL + "/getAdvertByID/{id}",
   getAiAdverts:
-    process.env.REACT_APP_ADVERT_BACKEND_URL + "ai/advertoneri/{jwt}",
+    process.env.REACT_APP_ADVERT_BACKEND_URL + "/ai/advertoneri/{jwt}",
 };
 export const ProjectService = {};
 export const UserService = {

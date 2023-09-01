@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { useEffect, useState } from "react";
 
 import {
@@ -9,14 +8,15 @@ import {
   AiFillYoutube,
   AiFillGithub,
 } from "react-icons/ai";
-import ReactDOM from "react-dom";
-import { Grid, Row, Col } from "react-flexbox-grid";
+import { Grid, Col } from "react-flexbox-grid";
 import "./styles.css";
 import { Link } from "react-router-dom";
 import { getUserDetails } from "../services/UserService";
 import { getResumeById } from "../services/ResumeService";
+import { getAiAdverts } from "../services/AdvertService";
 
 function App() {
+  // Sol Taraftaki Bar İçin
   const [resume, setResume] = useState([]);
   const [identity, setIdentity] = useState([]);
   const fetchApplications = () => {
@@ -33,10 +33,20 @@ function App() {
       setIdentity(response.data);
     });
   };
+  // Onerilen İlan Servisi
+  const [advertData, setAdvert] = useState([]);
+
+  const getAdverts = () => {
+    getAiAdverts(localStorage.getItem("tokenKey")).then((res) => {
+      setAdvert(res.data.combined_jobs);
+    });
+  };
   useEffect(() => {
     fetchApplications();
     fetchUserDetails();
+    getAdverts();
   }, []);
+
   return (
     <div className="container">
       <div className="row">
@@ -48,6 +58,7 @@ function App() {
                 <div className="flex items-center justify-center pt-5 flex-col">
                   <img
                     className="rounded-full w-40 "
+                    alt="deneme"
                     src="https://media.licdn.com/dms/image/D4D03AQGMTN0aBCU1Qg/profile-displayphoto-shrink_800_800/0/1689426716772?e=1695859200&v=beta&t=p7QsEIXLp6ZoJ8sxTE-KUkHOdR9hH_nXLMwmJ85o-Z8"
                   />
                   <h1 className="text-gray-800 font-semibold text-xl mt-5">
@@ -81,15 +92,17 @@ function App() {
             {/* buraya listeleme kısmını koydummmmmmmmmmmmmmm*/}
             <div className=" p-2 ">
               <p className=" font-semibold text-xl">Önerilen İlanlar</p>
-              <Link to="/ilanlar/">
-                <div className=" flex bg-white shadow-lg  hover:shadow-teal-500  ">
-                  <img
-                    className="w-[80px]"
-                    src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
-                    alt="ilan"
-                  />
-                  <p className="p-4">R-FORCE Genç Yetenek Programı 2023</p>
-                </div>
+              <Link to="/ilan-eslesmelerim">
+                {advertData.slice(0, 3).map((advert) => (
+                  <div className=" flex bg-white shadow-lg  hover:shadow-teal-500  ">
+                    <img
+                      className="w-[80px]"
+                      src="https://kpm.metu.edu.tr/wp-content/uploads/2023/02/HAVELSAN_DIKEY_LOGO-Revahe-Ehaver-1024x675.png"
+                      alt="ilan"
+                    />
+                    <p className="p-4">{advert["İLAN ADI"]}</p>
+                  </div>
+                ))}
               </Link>
             </div>
 

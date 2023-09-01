@@ -9,13 +9,14 @@ import { AiOutlineEnvironment } from "react-icons/ai";
 import { FaCalendarAlt, FaClock } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
 import { getAiAdverts } from "../../services/AdvertService";
+import { Link } from "react-router-dom";
 
 function App() {
   const [advertData, setAdvert] = useState([]);
 
   const getAdverts = () => {
     getAiAdverts(localStorage.getItem("tokenKey")).then((res) => {
-      setAdvert(res.data);
+      setAdvert(res.data.combined_jobs);
     });
   };
 
@@ -82,35 +83,38 @@ function App() {
             SİZE UYGUN İLAN EŞLEŞMELERİ
           </h1>
           <div className="grid grid-cols-1 gap-1 p-8 ">
-            <div className="bg-white w-full h-45 rounded-lg border-2  shadow-lg  hover:shadow-teal-500">
-              <div className="bg-white rounded-lg w-full h-45 p-4">
-                <h2 className="text-xl font-semibold text-blue-500">
-                  HAVELSAN
-                </h2>
-                <h3 className="text-l font-semibold text-blue-500 mt-3">
-                  Kıdemli İş Geliştirme Uzmanı
-                </h3>
-              </div>
+            {advertData.map((advert) => (
+              <Link to={"/ilan/" + advert["İLAN İD"]}>
+                <div className="bg-white w-full h-45 rounded-lg border-2  shadow-lg  hover:shadow-teal-500">
+                  <div className="bg-white rounded-lg w-full h-45 p-4">
+                    <h2 className="text-xl font-semibold text-blue-500">
+                      {advert["İLAN ADI"]}
+                    </h2>
+                    <h3 className="text-l font-semibold text-blue-500 mt-3">
+                      {advert["İLAN ALAN"]}
+                    </h3>
+                  </div>
 
-              <div className="bg-white w-full h-45   p-4">
-                <div className="flex mt-2 max-w-[450px]">
-                  <AiOutlineEnvironment className="text-2xl " />
-                  <p className="text-s">Ankara</p>
+                  <div className="bg-white w-full h-45   p-4">
+                    <div className="flex mt-2 max-w-[450px]">
+                      <AiOutlineEnvironment className="text-2xl " />
+                      <p className="text-s">{advert["İLAN KONUM"]}</p>
+                    </div>
+                    <div className="flex mt-3 max-w-[450px] ">
+                      <FaCalendarAlt className="text-2xl " />
+                      <p className="text-s">
+                        {advert["İLAN BAŞLANGIÇ TARİHİ"]} -{" "}
+                        {advert["İLAN BİTİŞ TARİHİ"]}
+                      </p>
+                    </div>
+                    <div className="flex mt-3 max-w-[450px]">
+                      <p className="text-s"></p>
+                    </div>
+                  </div>
+                  <div className="bg-white  w-full h-45 border-2"></div>
                 </div>
-                <div className="flex mt-3 max-w-[450px] ">
-                  <FaCalendarAlt className="text-2xl " />
-                  <p className="text-s">01.07.2023-02.09.23</p>
-                </div>
-                <div className="flex mt-3 max-w-[450px]">
-                  <FaClock className="text-2xl" />
-                  <p className="text-s">Tam Zamanlı</p>
-                </div>
-                <div className="flex mt-3 max-w-[450px]">
-                  <p className="text-s"></p>
-                </div>
-              </div>
-              <div className="bg-white  w-full h-45 border-2"></div>
-            </div>
+              </Link>
+            ))}
           </div>
         </Col>
       </Grid>
